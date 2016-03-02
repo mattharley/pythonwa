@@ -125,7 +125,7 @@ python manage.py makemigrations
 python manage.py migrate 
 ```
 
-In **crm/forms**
+In **crm/forms.py**
 
 ```
 from django import forms
