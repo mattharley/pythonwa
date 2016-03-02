@@ -125,6 +125,16 @@ python manage.py makemigrations
 python manage.py migrate 
 ```
 
+Register Event in admin (Restart runserver if needed, using Ctrl+c):
+
+```
+from django.contrib import admin
+
+from crm.models import Event
+
+admin.site.register(Event)
+```
+
 In **crm/forms.py**
 
 ```
