@@ -184,7 +184,7 @@ Add more fields to Event model
 
 In **crm/models.py**:
 
-'''
+```
 from django.db import models
 from django.utils.timezone import now
 
@@ -192,9 +192,9 @@ from django.utils.timezone import now
 class Event(models.Model):
     name = models.CharField(max_length=100)
     datetime = models.DateTimeField(default=now)
-'''
+```
 
-'''
+```
 python manage.py makemigrations
 python manage.py migrate
-'''
+```
