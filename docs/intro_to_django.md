@@ -120,6 +120,8 @@ class Event(models.Model):
     name = models.CharField()
 ```
 
+In project folder:
+
 ```
 python manage.py makemigrations
 python manage.py migrate 
@@ -193,6 +195,8 @@ class Event(models.Model):
     name = models.CharField(max_length=100)
     datetime = models.DateTimeField(default=now)
 ```
+
+In project folder:
 
 ```
 python manage.py makemigrations
