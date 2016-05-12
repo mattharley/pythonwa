@@ -1,0 +1,22 @@
+.profile .image {
+	height: 100px;
+	width: 100px;
+	float:left;
+	padding-right: 10px;
+}
+
+#content > ul {
+	list-style-type: none;
+}
+
+.profile {
+	margin: 5px;
+}
+
+.profile .user {
+	float:left;
+}
+
+.profile .name {
+	display: inline;
+}
