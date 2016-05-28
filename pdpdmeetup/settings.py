@@ -26,6 +26,7 @@ SECRET_KEY = "fbri!xjfu(_jjy340m28v8l+aw8osbxfbgg81#jt_or$%(=(*j"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+AUTH_USER_MODEL = 'profiles.Profile'
 # Application definition
 
 INSTALLED_APPS = (
@@ -37,6 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'talks',
     'companies',
+    'profiles',
 )
 
 MIDDLEWARE_CLASSES = (
