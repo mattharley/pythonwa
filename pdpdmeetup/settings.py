@@ -37,6 +37,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'talks',
+    'companies',
     'profiles',
 )
 
@@ -56,7 +57,7 @@ ROOT_URLCONF = 'pdpdmeetup.urls'
 TEMPLATES = (
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [ os.path.join(BASE_DIR, 'templates') ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -70,7 +71,7 @@ TEMPLATES = (
     },
 )
 
-WSGI_APPLICATION = 'pdpdmeetup.wsgi.application'
+#WSGI_APPLICATION = 'pdpdmeetup.wsgi.application'
 
 
 # Database
@@ -120,13 +121,16 @@ ALLOWED_HOSTS = ['*']
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
-STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
 STATIC_URL = '/static/'
 
 # Extra places for collectstatic to find static files.
 STATICFILES_DIRS = [
     os.path.join(PROJECT_ROOT, 'static'),
 ]
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media')
 
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/

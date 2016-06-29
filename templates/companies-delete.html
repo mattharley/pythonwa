@@ -1,0 +1,17 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{{ tittle }}</title>
+</head>
+<body>
+    <h1>{{ tittle }}</h1>
+
+    <form method='POST' action=''>{% csrf_token %}
+    {{form.as_p}}
+
+    <input type="submit" value="Submit">
+    </form>
+
+</body>
+</html>
