@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'talks',
     'companies',
     'profiles',
+    'opbeat.contrib.django',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -50,6 +51,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'opbeat.contrib.django.middleware.OpbeatAPMMiddleware',
 )
 
 ROOT_URLCONF = 'pdpdmeetup.urls'

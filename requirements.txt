@@ -2,6 +2,7 @@ Django==1.9.2
 Pillow==3.2.0
 dj-database-url==0.4.0
 gunicorn==19.4.5
+opbeat==3.3.4
 psycopg2==2.6.1
 whitenoise==2.0.6
 wsgiref==0.1.2
