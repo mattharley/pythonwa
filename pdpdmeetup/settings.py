@@ -23,9 +23,6 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = "fbri!xjfu(_jjy340m28v8l+aw8osbxfbgg81#jt_or$%(=(*j"
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
 AUTH_USER_MODEL = 'profiles.Profile'
 # Application definition
 
@@ -68,7 +65,6 @@ TEMPLATES = (
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
-            'debug': DEBUG,
         },
     },
 )
