@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'talks',
     'companies',
     'profiles',
+    'home'
 )
 
 MIDDLEWARE_CLASSES = (

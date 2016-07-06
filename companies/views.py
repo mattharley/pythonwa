@@ -27,7 +27,7 @@ def company_create(request):
 		instance.logo = company_logo
 		instance.save()
 
-		form = companyForm( None, None)
+		form = CompanyForm( None, None)
 		messages.success(request, 'Record succesfully created');
 
 	context = {

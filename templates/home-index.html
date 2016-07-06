@@ -1,0 +1,47 @@
+{% extends "base.html"%}
+
+
+
+{% block tabtitle %} {{ tittle }} {% endblock tabtitle %}
+
+{% block content %}
+	
+
+
+
+	<h1>{{ group_name }}</h1>
+	<h2>{{ title }}</h2>
+
+	
+	{% for obj in group_events %}
+	<div class="panel panel-default">
+  		<div class="panel-body">
+			<dl class="dl-horizontal">
+			
+				<dt>Name:</dt>
+				<dd>{{ obj.event_name }}</dd>
+					
+				<dt>Description</dt>
+				<dd>{{obj.event_description|safe}} </dd>
+
+				<dt>Address</dt>
+				<dd>{{obj.event_address }} </dd>
+
+				<dt>Rsvp count</dt>
+				<dd>{{ obj.event_yes_rsvp_count }} </dd>
+
+				<dt>Date</dt>
+				<dd>{{obj.event_datetime }} </dd>
+
+			</dl>
+		</div>
+	</div>
+	{% endfor %}
+	
+
+	
+
+{% endblock content %}
+
+
+

@@ -11,6 +11,7 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^', include('talks.urls')),
     url(r'^', include('companies.urls')),   
-    url(r'^', include('profiles.urls')),    
+    url(r'^', include('profiles.urls')),   
+    url(r'^', include('home.urls')),    
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
