@@ -18,6 +18,7 @@ import dj_database_url
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
+HEROKU = os.getenv('DATABASE_URL', None)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
@@ -32,8 +33,6 @@ SECRET_KEY = "fbri!xjfu(_jjy340m28v8l+aw8osbxfbgg81#jt_or$%(=(*j"
 
 AUTH_USER_MODEL = 'profiles.Profile'
 # Application definition
-
-HEROKU = os.getenv('DATABASE_URL', None)
 
 INSTALLED_APPS = (
     'django.contrib.admin',
