@@ -51,5 +51,5 @@ class SleepView(TemplateView):
                 context['seconds']
             )
         )
-        time.sleep(context['seconds'])
+        #time.sleep(context['seconds'])
         return context
