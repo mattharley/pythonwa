@@ -12,5 +12,6 @@ urlpatterns = [
     url(r'^', include('talks.urls')),
     url(r'^', include('companies.urls')),   
     url(r'^', include('profiles.urls')),    
+    url(r'^demos/', include('demos.urls')),   
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
