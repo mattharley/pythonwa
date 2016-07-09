@@ -13,7 +13,7 @@ urlpatterns = [
     url(r'^', include('companies.urls')),   
     url(r'^', include('profiles.urls')),
     url(
-        r'^\.well-known/acme-challenge/D3f0XT3ljvFa9ywTP9I3tMAziCeB4zeTMdRzW9o5mjg', 
+        r'^\.well-known/acme-challenge/fWHI3SJWItBWKR9khrIM0ICS4ZzR0T6k-z0P84SksYM', 
         TemplateView.as_view(template_name="ssl.html")
     )
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
