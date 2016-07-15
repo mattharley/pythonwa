@@ -10,7 +10,7 @@ import pytz
 
 def home_page(request):
 	
-	client = meetup.api.Client('6d5355616d7145c43415a7a384f2c1d');
+	client = meetup.api.Client('73c42797541a6c207a2a2b41262a66');
 
 	group_info = client.GetGroup({'urlname': 'Perth-Django-Users-Group'})
 	group_events = client.GetEvents({ 'group_id': group_info.id , 'status' :  'upcoming'   })

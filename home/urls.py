@@ -7,7 +7,7 @@ urlpatterns = [
     # Examples:
     # url(r'^companies/', 'pdpdmeetup.views.home', name='home'),
     
-	url(r'^home/$', home_page, name='home-page'),
+	url(r'^$', home_page, name='home-page'),
 ]
 
 urlpatterns += static ( settings.STATIC_URL, document_root = settings.STATIC_ROOT )
