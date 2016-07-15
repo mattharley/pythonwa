@@ -6,3 +6,4 @@ opbeat==3.3.4
 psycopg2==2.6.1
 whitenoise==2.0.6
 wsgiref==0.1.2
+meetup-api==0.1.1
