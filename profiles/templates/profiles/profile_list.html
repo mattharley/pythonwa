@@ -1,6 +1,7 @@
-{% extends "base_profiles.html" %}
+{% extends "base.html" %}
 
 {% block content %}
+    <div class="profile-group">
     <h2>Developer profiles:</h2>
     <ul class="profile list">
         {% for profile in object_list %}
@@ -17,4 +18,5 @@
             </li>
         {% endfor %}
     </ul>
+    </div>
 {% endblock %}

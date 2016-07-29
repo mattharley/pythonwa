@@ -5,9 +5,10 @@
 	padding-right: 10px;
 }
 
-#content > ul {
+body > div.container-fluid > div > ul {
 	list-style-type: none;
 }
+
 
 .profile {
 	margin: 5px;
@@ -19,4 +20,8 @@
 
 .profile .name {
 	display: inline;
+}
+
+.profile-group {
+	width: 100%;
 }
