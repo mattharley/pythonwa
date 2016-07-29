@@ -1,3 +1,4 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,14 +10,26 @@
 	
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-
+	
 	<!-- Optional theme -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
 
+	<!-- Css for the base template -->
+	<link rel="stylesheet" href="{% static "base/css/nav-links.css" %}">
+	<link rel="stylesheet" href="{% static "base/css/base.css" %}">
+	<link rel="stylesheet" href="{% static "profiles/css/main.css" %}">
+
 </head>
 <body>
-	 
+	
 	<div class="container-fluid">
+	<div class="row button-group">
+		{% block 'nav-home' %}<a href="{% url 'home-page' %}"><div class="btn nav-button">Home</div></a>{% endblock %}
+		{% block 'nav-profiles' %}<a href="{% url 'profiles-page' %}"><div class="btn nav-button">Profiles</div></a>{% endblock %}
+		{% block 'nav-talks' %}<a href="{% url 'talk-list' %}"><div class="btn nav-button">Talks</div></a>{% endblock %}
+		{% block 'nav-companies' %}<a href="{% url 'companies-home' %}"><div class="btn nav-button">Companies</div></a>{% endblock %}
+		
+	</div> 
 	{% block content%}{% endblock content%}
 	</div>
 	
