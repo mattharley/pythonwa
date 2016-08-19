@@ -34,7 +34,7 @@ Deploy! (Probably fail if you don't have permission on Heroku, please ask Matt f
 Other useful info (especially for beginners)
 ============================================
 
-Indent standard = tab
+Indent standard = 4 spaces
 
 `project root` - This is the folder where all files relating to the project and its apps are stored.
 Path = `/pdpdmeetup/`

@@ -1,9 +1,7 @@
-
 from django.shortcuts import render_to_response
 
 
 def home_page(request):
-
     return render_to_response(
         'home.html',
         {
@@ -14,7 +12,6 @@ def home_page(request):
 
 
 def get_involved(request):
-
     return render_to_response(
         'getinvolved.html',
         {
@@ -65,7 +62,7 @@ def ajax_meetups_tab(request, event_status):
             'event_description': event['description'],
             'event_yes_rsvp_count': event['yes_rsvp_count'],
             'event_datetime': my_date_in_perth
-            })
+        })
 
     return render_to_response(
         'ajax/ajax_meetups.html',

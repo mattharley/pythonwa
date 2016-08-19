@@ -30,8 +30,8 @@ class ProfileAdmin(UserAdmin):
         (None, {
             'classes': ('wide',),
             'fields': (
-            'email', 'password1', 'password2', 'name', 'photo', 'frontend', 'backend', 'year_started_learning',
-            'company')}
+                'email', 'password1', 'password2', 'name', 'photo', 'frontend', 'backend', 'year_started_learning',
+                'company')}
          ),
     )
     form = ProfileChangeForm

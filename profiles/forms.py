@@ -10,11 +10,11 @@ class ProfileCreationForm(UserCreationForm):
     """
 
     def __init__(self, *args, **kargs):
-        super(ProfileCreationForm, self).__init__(*args, **kargs)        
+        super(ProfileCreationForm, self).__init__(*args, **kargs)
 
     class Meta:
         model = Profile
-        fields = ("email","photo","frontend","backend", "year_started_learning", "company")
+        fields = ("email", "photo", "frontend", "backend", "year_started_learning", "company")
 
 
 class ProfileChangeForm(UserChangeForm):
@@ -24,7 +24,7 @@ class ProfileChangeForm(UserChangeForm):
     """
 
     def __init__(self, *args, **kargs):
-        super(ProfileChangeForm, self).__init__(*args, **kargs)        
+        super(ProfileChangeForm, self).__init__(*args, **kargs)
 
     class Meta:
         model = Profile

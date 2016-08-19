@@ -7,5 +7,4 @@ from .models import Profile
 
 
 class ProfileListView(ListView):
-
     model = Profile
