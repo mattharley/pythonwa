@@ -2,6 +2,7 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 
 from profiles.models import Profile
 
+
 class ProfileCreationForm(UserCreationForm):
     """
     A form that creates a user, with no privileges, from the given email and
@@ -14,6 +15,7 @@ class ProfileCreationForm(UserCreationForm):
     class Meta:
         model = Profile
         fields = ("email","photo","frontend","backend", "year_started_learning", "company")
+
 
 class ProfileChangeForm(UserChangeForm):
     """A form for updating users. Includes all the fields on

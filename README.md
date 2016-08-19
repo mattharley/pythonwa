@@ -29,3 +29,24 @@ Add heroku remote URL:
 
 Deploy! (Probably fail if you don't have permission on Heroku, please ask Matt for access)
 - `git push heroku master`
+
+
+Other useful info (especially for beginners)
+============================================
+
+Indent standard = tab
+
+`project root` - This is the folder where all files relating to the project and its apps are stored.
+Path = `/pdpdmeetup/`
+
+`project app` - This is the core app for the project. Essentially its just the first app that got created and often contains core logic or shared files such as common templates.
+Path = `/pdpdmeetup/pdpdmeetup/`
+
+Templates are split into two locations.
+
+1. Project templates which are shared amongst all apps are stored under the `project app`'s templates folder
+Path = `/pdpdmeetup/pdpdmeetup/templates`
+
+2. App templates which are app specific (where `app1` is the app name)
+Path = `pdpdmeetup/app1/templates`
+

@@ -33,11 +33,17 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
+
+    'opbeat.contrib.django',
+
     'talks',
     'companies',
     'profiles',
     'home',
-    'opbeat.contrib.django',
+    'jobs',
+    'sponsors',
+
 )
 
 MIDDLEWARE_CLASSES = (
@@ -57,7 +63,7 @@ ROOT_URLCONF = 'pdpdmeetup.urls'
 TEMPLATES = (
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [ os.path.join(BASE_DIR, 'templates') ],
+        'DIRS': [os.path.join(BASE_DIR, 'pdpdmeetup/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
