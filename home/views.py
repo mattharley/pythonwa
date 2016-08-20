@@ -39,11 +39,8 @@ def ajax_meetups_tab(request, event_status):
     group_info = client.GetGroup({'urlname': 'Perth-Django-Users-Group'})
     group_events = client.GetEvents({'group_id': group_info.id, 'status': event_status})
 
-    events = []
-
-    for event in reversed(group_events.results):
-
-        events.append({
+    events = [
+        {
             'group_id': group_info.id,
             'event_id': event['id'],
             'event_name': event['name'],
@@ -51,7 +48,10 @@ def ajax_meetups_tab(request, event_status):
             'event_description': event['description'],
             'event_yes_rsvp_count': event['yes_rsvp_count'],
             'event_datetime': datetime.datetime.fromtimestamp(event['time'] / 1000.0, pytz.timezone('Australia/Perth'))
-        })
+        }
+
+        for event in reversed(group_events.results)
+    ]
 
     return render_to_response(
         'ajax/ajax_meetups.html',
