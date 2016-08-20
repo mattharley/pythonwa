@@ -41,10 +41,7 @@ def ajax_meetups_tab(request, event_status):
 
     array_event = []
 
-    event_count = 0
-
     for event in group_events.results:
-        event_count += 1
         perth_tz = pytz.timezone('Australia/Perth')
 
         event_datetime = event['time'] / 1000.0
@@ -72,6 +69,6 @@ def ajax_meetups_tab(request, event_status):
             "group_id": group_info.id,
             "group_events": array_event,
 
-            'event_count': event_count,
+            'event_count': len(group_events.results),
             'event_status': event_status,
         })
