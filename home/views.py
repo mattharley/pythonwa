@@ -1,5 +1,9 @@
 from django.shortcuts import render_to_response
 
+import meetup.api
+import datetime
+import pytz
+
 
 def home_page(request):
     return render_to_response(
@@ -29,10 +33,6 @@ def ajax_meetups_tab(request, event_status):
     :param event_status: upcoming, past, proposed, suggested, cancelled, draft
     :return:
     """
-
-    import meetup.api
-    import datetime
-    import pytz
 
     client = meetup.api.Client('73c42797541a6c207a2a2b41262a66')
 
