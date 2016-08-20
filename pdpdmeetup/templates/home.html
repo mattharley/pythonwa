@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+
+{#{% block tabtitle %} {{ tittle }} {% endblock tabtitle %}#}
+
+{% load staticfiles %}
+
+{% block javascript %}
+    <script>
+        $(document).ready(function()
+        {
+            // Load any meetups with a status of 'upcoming' on page load
+            $.ajax({
+                type: "GET",
+                url: "{% url 'homeapp:ajax_meetups_tab' 'upcoming' %}",
+                error: function(data){
+                    $('#upcoming-meetups-tab-content').html("Ooops. I couldn't get the meetup info.");
+                    },
+                success: function(data){
+                    $('#upcoming-meetups-tab-content').html(data);
+                }
+            })
+        })
+    </script>
+
+    <script>
+        $(document).ready(function()
+        {
+            // Load any meetups with a status of 'upcoming' on page load
+            $.ajax({
+                type: "GET",
+                url: "{% url 'homeapp:ajax_meetups_tab' 'past' %}",
+                error: function(data){
+                    $('#past-meetups-tab-content').html("Ooops. I couldn't get the meetup info.");
+                    },
+                success: function(data){
+                    $('#past-meetups-tab-content').html(data);
+                }
+            })
+        })
+    </script>
+
+{% endblock %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="jumbotron">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="text-center center-block">
+                            <h2>Hey Python &amp; Django fans!</h2>
+                            <p>A meetup group for Perthfectionists with deadlines</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="row">
+                            <div class="text-center center-block">
+                                <h6 class="text-muted">Our Awesome Sponsors</h6>
+                                <a href="http://www.hipflaskapp.com/"><img src="{% static "images/hipflaskapp_120x90.jpeg" %}"></a>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="text-center center-block">
+                                <div class="col-md-12">
+                                    <a href="http://www.clickengineeringservices.com/"><img src="{% static "images/click_120x90.jpeg" %}"></a>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="text-center center-block">
+                                <div class="col-md-12">
+                                    <a href="http://signiq.com/"><img src="{% static "images/signiq_120x90.jpeg" %}"></a>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="text-center center-block">
+                                <div class="col-md-12">
+                                    <a href="http://www.spacecubed.com/"><img src="{% static "images/spacecubed.png" %}"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="tabbable">
+
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#tabs1" data-toggle="tab">Upcoming Meetups/Talks</a></li>
+                </ul>
+
+                <div id="my-tab-content" class="tab-content">
+                    <div id="tabs1" class="tab-pane active">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div id="upcoming-meetups-tab-content">
+                                    <br><br><br><br><div class='text-center'> <i class='fa fa-cog fa-spin fa-3x'></i> <br> Loading Meetup Info</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}
+
+
+

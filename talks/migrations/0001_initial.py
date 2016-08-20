@@ -7,7 +7,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
     dependencies = [
@@ -23,7 +22,8 @@ class Migration(migrations.Migration):
                 ('description', models.CharField(help_text='Description of the talk', max_length=1000)),
                 ('location', models.CharField(help_text='Location of talk', max_length=200)),
                 ('time', models.DateTimeField(help_text='Time when talk was or will be presented')),
-                ('presenters', models.ManyToManyField(help_text='The presenters of the talk', to=settings.AUTH_USER_MODEL)),
+                ('presenters',
+                 models.ManyToManyField(help_text='The presenters of the talk', to=settings.AUTH_USER_MODEL)),
             ],
         ),
     ]

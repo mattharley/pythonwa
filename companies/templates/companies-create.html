@@ -1,4 +1,4 @@
-{% extends "base.html"%}
+{% extends "base.html" %}
 
 {% block tabtitle %} {{ tittle }} {% endblock tabtitle %}
 
@@ -23,16 +23,18 @@
     	</div>
 	{% endif %}
 
+
+	
+
 	<form name='form' enctype="multipart/form-data" method='POST' action=''>
 	    
 	    {% csrf_token %}
 	    {{form.as_p}}
 
-		<button type="button" class="btn btn-primary" onclick="document.form.submit()" > Update </button>
-		<button type="button" class="btn btn-danger"  onclick="javascript:location.href='{% url 'companies-home' %}'" > Back </button>
+		<button type="button" class="btn btn-primary" onclick="document.form.submit()" >Save</button>
+		<button type="button" class="btn btn-danger"  onclick="javascript:location.href='{% url 'companies-home' %}'" >Back</button>
 
     </form>
-
 
 
 {% endblock content %}

@@ -2,6 +2,7 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 
 from profiles.models import Profile
 
+
 class ProfileCreationForm(UserCreationForm):
     """
     A form that creates a user, with no privileges, from the given email and
@@ -9,11 +10,12 @@ class ProfileCreationForm(UserCreationForm):
     """
 
     def __init__(self, *args, **kargs):
-        super(ProfileCreationForm, self).__init__(*args, **kargs)        
+        super(ProfileCreationForm, self).__init__(*args, **kargs)
 
     class Meta:
         model = Profile
-        fields = ("email","photo","frontend","backend", "year_started_learning", "company")
+        fields = ("email", "photo", "frontend", "backend", "year_started_learning", "company")
+
 
 class ProfileChangeForm(UserChangeForm):
     """A form for updating users. Includes all the fields on
@@ -22,7 +24,7 @@ class ProfileChangeForm(UserChangeForm):
     """
 
     def __init__(self, *args, **kargs):
-        super(ProfileChangeForm, self).__init__(*args, **kargs)        
+        super(ProfileChangeForm, self).__init__(*args, **kargs)
 
     class Meta:
         model = Profile

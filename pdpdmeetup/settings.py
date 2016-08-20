@@ -16,7 +16,6 @@ import dj_database_url
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
@@ -33,11 +32,17 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
+
+    'opbeat.contrib.django',
+
     'talks',
     'companies',
     'profiles',
     'home',
-    'opbeat.contrib.django',
+    'jobs',
+    'sponsors',
+
 )
 
 MIDDLEWARE_CLASSES = (
@@ -57,7 +62,7 @@ ROOT_URLCONF = 'pdpdmeetup.urls'
 TEMPLATES = (
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [ os.path.join(BASE_DIR, 'templates') ],
+        'DIRS': [os.path.join(BASE_DIR, 'pdpdmeetup/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -70,7 +75,7 @@ TEMPLATES = (
     },
 )
 
-#WSGI_APPLICATION = 'pdpdmeetup.wsgi.application'
+# WSGI_APPLICATION = 'pdpdmeetup.wsgi.application'
 
 
 # Database

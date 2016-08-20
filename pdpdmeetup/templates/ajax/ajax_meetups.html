@@ -1,0 +1,34 @@
+
+{# This template is used to display meetup.com event information via an ajax #}
+
+{% load humanize %}
+
+<br>
+<div class="col-md-12">
+    {% for each_event in group_events %}
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <dl class="dl-horizontal">
+
+                    <dt>Name:</dt>
+                    <dd>{{ each_event.event_name }}</dd>
+
+                    <dt>Description:</dt>
+                    <dd>{{ each_event.event_description|safe }} </dd>
+
+                    <dt>Where?</dt>
+                    <dd>{{ each_event.event_address }} </dd>
+
+                    <dt>Peeps Coming:</dt>
+                    <dd>{{ each_event.event_yes_rsvp_count }} </dd>
+
+                    <dt>When?</dt>
+                    <dd>{{ each_event.event_datetime }} ({{ each_event.event_datetime|naturaltime }})</dd>
+
+                </dl>
+            </div>
+        </div>
+    {% empty %}
+        <p>No {{ event_status }} meetup events were found. <a href="http://www.meetup.com/Perth-Django-Users-Group/">Suggest a meetup!</a></p>
+    {% endfor %}
+</div>
