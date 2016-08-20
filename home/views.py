@@ -41,7 +41,7 @@ def ajax_meetups_tab(request, event_status):
 
     array_event = []
 
-    for event in group_events.results:
+    for event in reversed(group_events.results):
         perth_tz = pytz.timezone('Australia/Perth')
 
         event_datetime = event['time'] / 1000.0
