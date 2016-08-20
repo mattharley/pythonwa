@@ -69,6 +69,5 @@ def ajax_meetups_tab(request, event_status):
             "group_id": group_info.id,
             "group_events": array_event,
 
-            'event_count': len(group_events.results),
             'event_status': event_status,
         })
