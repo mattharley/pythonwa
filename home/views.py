@@ -56,9 +56,6 @@ def ajax_meetups_tab(request, event_status):
     return render_to_response(
         'ajax/ajax_meetups.html',
         {
-            "group_info": group_info.__dict__.keys(),
-            "group_name": group_info.name,
-            "group_id": group_info.id,
             "group_events": events,
 
             'event_status': event_status,
