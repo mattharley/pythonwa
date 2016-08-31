@@ -23,7 +23,7 @@
                     <dd>{{ each_event.event_yes_rsvp_count }} </dd>
 
                     <dt>When?</dt>
-                    <dd>{{ each_event.event_datetime }} ({{ each_event.event_datetime|naturaltime }})</dd>
+                    <dd>{{ each_event.event_datetime|date:"d M Y, P T" }} ({{ each_event.event_datetime|naturaltime }})</dd>
 
                 </dl>
             </div>
