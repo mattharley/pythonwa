@@ -2,10 +2,10 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>{{ tittle }}</title>
+    <title>{{ title }}</title>
 </head>
 <body>
-    <h1>{{ tittle }}</h1>
+    <h1>{{ title }}</h1>
 
     <form method='POST' action=''>{% csrf_token %}
     {{form.as_p}}
