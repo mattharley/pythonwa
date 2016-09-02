@@ -4,7 +4,7 @@ from django.core.validators import MaxLengthValidator, RegexValidator
 import datetime
 
 name_validation = RegexValidator(r"^[A-Za-z ]{1,100}$")
-abn_validation = RegexValidator(r"^[0-9]{12,12}$")
+abn_validation = RegexValidator(r"^[0-9]{11,11}$")
 description_validation = RegexValidator(r"^[A-Za-z0-9 .\"'?!,@$-]{1,200}$")
 
 
