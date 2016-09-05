@@ -21,7 +21,7 @@ def company_create(request):
             abn=form.cleaned_data.get("abn"),
             description=form.cleaned_data.get("description"),
             logo=request.FILES['logo']
-        ).save()
+        )
 
         form = CompanyForm(None, None)
         messages.success(request, 'Record succesfully created')
