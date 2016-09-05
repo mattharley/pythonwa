@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
 
 from .models import Company
@@ -23,8 +23,9 @@ def company_create(request):
             logo=request.FILES['logo']
         )
 
-        form = CompanyForm(None, None)
         messages.success(request, 'Record succesfully created')
+
+        return redirect(company_list)
 
     context = {
         "title": "Create a new Company",
@@ -52,7 +53,8 @@ def company_edit(request, id=None):
         instance.save()
 
         messages.success(request, 'Record succesfully updated')
-        # return redirect(company_list)
+
+        return redirect(company_list)
 
     context = {
         "title": "Updating Form",
