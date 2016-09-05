@@ -29,7 +29,7 @@ def company_create(request):
         instance.save()
 
         form = CompanyForm(None, None)
-        messages.success(request, 'Record succesfully created');
+        messages.success(request, 'Record succesfully created')
 
     context = {
         "title": "Create a new Company",
@@ -66,7 +66,7 @@ def company_edit(request, id=None):
             instance.description = company_description
             instance.save()
 
-        messages.success(request, 'Record succesfully updated');
+        messages.success(request, 'Record succesfully updated')
         # return redirect(company_list)
 
     context = {
