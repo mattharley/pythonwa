@@ -23,7 +23,7 @@ def company_create(request):
             logo=request.FILES['logo']
         )
 
-        messages.success(request, 'Record succesfully created')
+        messages.success(request, 'Record successfully created')
 
         return redirect(company_list)
 
@@ -52,7 +52,7 @@ def company_edit(request, id=None):
 
         instance.save()
 
-        messages.success(request, 'Record succesfully updated')
+        messages.success(request, 'Record successfully updated')
 
         return redirect(company_list)
 
