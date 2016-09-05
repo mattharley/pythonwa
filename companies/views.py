@@ -49,22 +49,12 @@ def company_edit(request, id=None):
     form.fields['logo'].initial = instance.logo
 
     if form.is_valid():
-        company_name = form.cleaned_data.get("name")
-        company_abn = form.cleaned_data.get("abn")
-        company_description = form.cleaned_data.get("description")
-        company_logo = form.cleaned_data.get("logo")
+        instance.name = form.cleaned_data.get("name")
+        instance.abn = form.cleaned_data.get("abn")
+        instance.description = form.cleaned_data.get("description")
+        instance.logo = form.cleaned_data.get("logo")
 
-        if company_logo:
-            instance.name = company_name
-            instance.abn = company_abn
-            instance.description = company_description
-            instance.logo = company_logo
-            instance.save()
-        else:
-            instance.name = company_name
-            instance.abn = company_abn
-            instance.description = company_description
-            instance.save()
+        instance.save()
 
         messages.success(request, 'Record succesfully updated')
         # return redirect(company_list)
