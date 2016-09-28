@@ -17,7 +17,7 @@ urlpatterns = [
                   url(r'^', include('sponsors.urls', namespace='sponsorsapp')),
 
                   url(
-                      r'^\.well-known/acme-challenge/fWHI3SJWItBWKR9khrIM0ICS4ZzR0T6k-z0P84SksYM',
+                      r'^\.well-known/acme-challenge/qK36hUj09uX6GeARMsKWKxTbrzdPl8QBbDhPFTrV1WA',
                       TemplateView.as_view(template_name="ssl.html")
                   )
               ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
