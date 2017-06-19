@@ -2,3 +2,15 @@ html,body {
 	width: 100%;
 	height: 100%;
 }
+.prominent-links {
+    margin-top: 40px;
+}
+.prominent-links a {
+    display: block;
+    float: left;
+    width: 33%;
+    text-align: center;
+}
+.prominent-links img {
+    height: 50px;
+}
