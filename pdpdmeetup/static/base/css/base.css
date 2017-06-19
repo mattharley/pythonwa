@@ -14,3 +14,6 @@ html,body {
 .prominent-links img {
     height: 50px;
 }
+.sponsors .row {
+    margin-bottom: 20px;
+}

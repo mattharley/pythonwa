@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
 
 from .models import Company
@@ -16,20 +16,16 @@ def company_create(request):
     form = CompanyForm(request.POST or None, request.FILES or None)
 
     if form.is_valid():
-        company_name = form.cleaned_data.get("name")
-        company_abn = form.cleaned_data.get("abn")
-        company_description = form.cleaned_data.get("description")
-        company_logo = request.FILES['logo']
+        Company.objects.create(
+            name=form.cleaned_data.get("name"),
+            abn=form.cleaned_data.get("abn"),
+            description=form.cleaned_data.get("description"),
+            logo=request.FILES['logo']
+        )
 
-        instance = Company.objects.create()
-        instance.name = company_name
-        instance.abn = company_abn
-        instance.description = company_description
-        instance.logo = company_logo
-        instance.save()
+        messages.success(request, 'Record successfully created')
 
-        form = CompanyForm(None, None)
-        messages.success(request, 'Record succesfully created');
+        return redirect(company_list)
 
     context = {
         "title": "Create a new Company",
@@ -49,25 +45,16 @@ def company_edit(request, id=None):
     form.fields['logo'].initial = instance.logo
 
     if form.is_valid():
-        company_name = form.cleaned_data.get("name")
-        company_abn = form.cleaned_data.get("abn")
-        company_description = form.cleaned_data.get("description")
-        company_logo = form.cleaned_data.get("logo")
+        instance.name = form.cleaned_data.get("name")
+        instance.abn = form.cleaned_data.get("abn")
+        instance.description = form.cleaned_data.get("description")
+        instance.logo = form.cleaned_data.get("logo")
 
-        if company_logo:
-            instance.name = company_name
-            instance.abn = company_abn
-            instance.description = company_description
-            instance.logo = company_logo
-            instance.save()
-        else:
-            instance.name = company_name
-            instance.abn = company_abn
-            instance.description = company_description
-            instance.save()
+        instance.save()
 
-        messages.success(request, 'Record succesfully updated');
-        # return redirect(company_list)
+        messages.success(request, 'Record successfully updated')
+
+        return redirect(company_list)
 
     context = {
         "title": "Updating Form",
