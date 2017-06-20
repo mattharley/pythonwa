@@ -4,6 +4,7 @@ html,body {
 }
 .prominent-links {
     margin-top: 40px;
+    overflow: hidden; /* To give child floats solid height */
 }
 .prominent-links a {
     display: block;

@@ -14,7 +14,7 @@ https://devcenter.heroku.com/articles/getting-started-with-python#set-up
 
 Install Heroku Client to get the `heroku` command.
 
-- Arch Linux: https://aur.archlinux.org/packages/heroku-toolbelt/
+- Arch Linux: https://aur.archlinux.org/packages/heroku-toolbelt/ https://aur.archlinux.org/packages/nodejs-heroku-cli/
 - Ubuntu: ???
 
 Login to Heroku with Toolbelt:
