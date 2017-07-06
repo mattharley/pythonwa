@@ -3,12 +3,67 @@
 {% block tabtitle %} {{ title }} {% endblock tabtitle %}
 
 {% block content %}
-	
 	<h1>{{ title }}</h1>
 	<h2> <a href="{% url 'companies-create' %}" > Add a Company </a> </h2>
 	
 
 	<br/>
+
+    <div id="spa"></div>
+    <style>
+        .custom-list {
+            border: 1px solid red;
+        }
+    </style>
+    <script>
+        var super_global = {
+            companies: [],
+        }
+
+        SubCompanyApp = {
+            view: () => {
+                return m('div', {style: {background: 'green'}}, 'Yes this looks bad, please help us!')
+            }
+        }
+
+        CompaniesApp = {
+            oninit(app_node) {
+                m.request('/api/companies/').then(d => {
+                    super_global.companies = d
+                });
+                // $.ajax()
+            },
+            view(app_node) {
+                const companies = super_global.companies;
+                return m('div',
+                    m(SubCompanyApp), 
+                    m('b',
+                        {
+                            oncreate: (vnode) => {
+                                $(vnode.dom).css(
+                                    {'background': 'red'});
+                            },
+                            onupdate: () => {},
+                            ondelete: () => {},
+                        },
+                        'Number of companies:', companies.length),
+                    m('ul.custom-list',
+                        super_global.companies.map(company => {
+                            return m('li', company.name);
+                        })),
+                    m('button',
+                        {
+                            onclick: () => {
+                                super_global.companies.push({
+                                    name: 'Example',
+                                });
+                            }
+                        },
+                        'Add'));
+                }
+        }
+        m.mount(document.getElementById('spa'), CompaniesApp)
+    </script>
 
 	
 	<div class="row" >
