@@ -6,10 +6,13 @@ from companies.views import company_delete
 from django.conf.urls.static import static
 from django.conf import settings
 
+from companies.api import companies
+
 urlpatterns = [
     # Examples:
     # url(r'^companies/', 'pdpdmeetup.views.home', name='home'),
 
+    url(r'^api/companies/$', companies, name='api_companies'),
     url(r'^create/$', company_create, name='companies-create'),
     url(r'^companies/$', company_list, name='companies-home'),
     url(r'^companies-edit/(?P<id>\d+)/', company_edit, name='company-edit'),
