@@ -10,6 +10,7 @@ urlpatterns = [
                   # url(r'^blog/', include('blog.urls')),
                   url(r'^', include('home.urls', namespace='homeapp')),
                   url(r'^admin/', include(admin.site.urls)),
+                  url(r'^spa/$', TemplateView.as_view(template_name='spa/spa.html')),
                   url(r'^', include('talks.urls', namespace='talksapp')),
                   url(r'^', include('companies.urls')),
                   url(r'^', include('profiles.urls')),
