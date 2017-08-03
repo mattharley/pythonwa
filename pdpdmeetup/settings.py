@@ -42,12 +42,15 @@ INSTALLED_APPS = (
     'home',
     'jobs',
     'sponsors',
-
+    'rest_framework',
+    'rest_framework_swagger',
+    'corsheaders',
 )
 
 MIDDLEWARE_CLASSES = (
     'opbeat.contrib.django.middleware.OpbeatAPMMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -55,6 +58,10 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+)
+
+CORS_ORIGIN_WHITELIST = (
+    'localhost:3000',
 )
 
 ROOT_URLCONF = 'pdpdmeetup.urls'
