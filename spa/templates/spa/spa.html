@@ -10,45 +10,53 @@
             }
         </style>
         <script>
-            var super_global = {
-                companies: [],
-            }
-
             SubCompanyApp = {
                 view: () => {
                     return m('div', {style: {background: 'green'}}, 'Yes this looks bad, please help us!')
                 }
             }
 
+            function links() {
+                // <a href="link">link</a>
+                return m('ul',
+                    ['/companies/', '/companies/add/'].map(link => m('li',
+                        m('a', { oncreate: m.route.link, href: link }, link))));
+            }
+
             CompaniesApp = {
-                oninit(app_node) {
+                oninit(vnode) {
                     m.request('/api/companies/').then(d => {
-                        super_global.companies = d
+                        vnode.state.companies = d
                     });
-                    // $.ajax()
                 },
-                view(app_node) {
-                    const companies = super_global.companies;
+                view(vnode) {
+                    const companies = vnode.state.companies || [];
                     return m('div',
+                        links(),
                         m(SubCompanyApp), 
                         m('b',
                             {
                                 oncreate: (vnode) => {
+                                    /*
                                     $(vnode.dom).css(
                                         {'background': 'red'});
+                                    */
                                 },
                                 onupdate: () => {},
                                 ondelete: () => {},
                             },
                             'Number of companies:', companies.length),
                         m('ul.custom-list',
-                            super_global.companies.map(company => {
-                                return m('li', company.name);
+                            companies.map(company => {
+                                var args = company.description ? ['a', {href: ''}] : ['span', {}];
+                                return m('li', m.apply(null, args.concat([company.name])));
+                                // OR
+                                return m('li', m(...args, company.name));
                             })),
                         m('button',
                             {
                                 onclick: () => {
-                                    super_global.companies.push({
+                                    vnode.state.companies.push({
                                         name: 'Example',
                                     });
                                 }
@@ -56,7 +64,51 @@
                             'Add Example'));
                     }
             }
-            m.mount(document.getElementById('spa'), CompaniesApp)
+
+            var CompaniesAddApp = {
+                oninit() {
+                },
+                view() {
+                    return m('div',
+                        m('h1', 'Add company'),
+
+                        m('input'),
+                        m('input'),
+                        m('button'),
+                        links());
+                }
+            }
+
+            m.route(document.getElementById('spa'), '/companies/', {
+                '/companies/': CompaniesApp,
+                '/companies/add/': CompaniesAddApp,
+            });
+
+
+            ////////////////
+            // 'UI' TESTS //
+            ////////////////
+
+            function assert(a, b) {
+                if (a !== b) {
+                    throw `${a} is not ${b}`
+                }
+            }
+
+            var mockNode = { 
+                state: {
+                    companies :[
+                        {name: 'Company1', description: 'First Company'},
+                        {name: 'Company2', description: ''}
+                    ]
+                }
+            }
+            assert(CompaniesApp.view(mockNode).tag, 'div')
+            assert(CompaniesApp.view(mockNode).children[3].tag, 'ul')
+            assert(CompaniesApp.view(mockNode).children[3].children[0].children[0].tag, 'a')
+            assert(CompaniesApp.view(mockNode).children[3].children[0].children[0].text, 'Company1')
+            assert(CompaniesApp.view(mockNode).children[3].children[1].children[0].tag, 'span')
+            assert(CompaniesApp.view(mockNode).children[3].children[1].children[0].text, 'Company2')
         </script>
     </body>
 </html>
