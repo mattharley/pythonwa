@@ -1,0 +1,130 @@
+<html>
+    <head>
+        <script src="//unpkg.com/mithril/mithril.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/qtip2/3.0.3/jquery.qtip.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/qtip2/3.0.3/basic/jquery.qtip.min.css" />
+    </head>
+    <body>
+        <div id="spa"></div>
+        <style>
+            .custom-list {
+                border: 1px solid red;
+            }
+        </style>
+        <script>
+            SubCompanyApp = {
+                view: () => {
+                    return m('div', {style: {background: 'green'}}, 'Yes this looks bad, please help us!')
+                }
+            }
+
+            function links() {
+                // <a href="link">link</a>
+                return m('ul',
+                    ['/companies/', '/companies/add/'].map(link => m('li',
+                        m('a', { oncreate: m.route.link, href: link }, link))));
+            }
+
+            CompaniesApp = {
+                oninit(vnode) {
+                    m.request('/api/companies/').then(d => {
+                        vnode.state.companies = d
+                    });
+                },
+                view(vnode) {
+                    const companies = vnode.state.companies || [];
+                    return m('div',
+                        links(),
+                        m(SubCompanyApp), 
+                        m('b',
+                            {
+                            },
+                            'Number of companies:', companies.length),
+                        m('ul.custom-list',
+                            companies.map((company, i) => {
+                                var args = company.description ?
+                                    ['a', {
+                                        href: '',
+                                        'data-tooltip-content': "#content" + i,
+                                        oncreate: (vnode) => {
+                                            /////////////////////////
+                                            // APPLY JQUERY PLUGIN //
+                                            /////////////////////////
+
+                                            // Instantiate jquery qTip plugin after virtual <a> creation
+                                            $(vnode.dom).qtip({
+                                                content: {
+                                                    text: company.description
+                                                }
+                                            });
+                                        },
+                                        onupdate: () => {
+                                            // Run qTip update function (if any) if virtual <a> has changed
+                                        },
+                                        ondelete: () => {
+                                            // Uninstantiate qTip if you like
+                                        },
+                                    }] :
+                                    ['span', {}];
+                                return m('li', m(...args, company.name));
+                            })),
+                        m('button',
+                            {
+                                onclick: () => {
+                                    vnode.state.companies.push({
+                                        name: 'Example',
+                                    });
+                                }
+                            },
+                            'Add Example'));
+                    }
+            }
+
+            var CompaniesAddApp = {
+                oninit() {
+                },
+                view() {
+                    return m('div',
+                        m('h1', 'Add company'),
+
+                        m('input'),
+                        m('input'),
+                        m('button'),
+                        links());
+                }
+            }
+
+            m.route(document.getElementById('spa'), '/companies/', {
+                '/companies/': CompaniesApp,
+                '/companies/add/': CompaniesAddApp,
+            });
+
+
+            ////////////////
+            // 'UI' TESTS //
+            ////////////////
+
+            function assert(a, b) {
+                if (a !== b) {
+                    throw `${a} is not ${b}`
+                }
+            }
+
+            var mockNode = { 
+                state: {
+                    companies :[
+                        {name: 'Company1', description: 'First Company'},
+                        {name: 'Company2', description: ''}
+                    ]
+                }
+            }
+            assert(CompaniesApp.view(mockNode).tag, 'div')
+            assert(CompaniesApp.view(mockNode).children[3].tag, 'ul')
+            assert(CompaniesApp.view(mockNode).children[3].children[0].children[0].tag, 'a')
+            assert(CompaniesApp.view(mockNode).children[3].children[0].children[0].text, 'Company1')
+            assert(CompaniesApp.view(mockNode).children[3].children[1].children[0].tag, 'span')
+            assert(CompaniesApp.view(mockNode).children[3].children[1].children[0].text, 'Company2')
+        </script>
+    </body>
+</html>

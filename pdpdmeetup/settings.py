@@ -42,7 +42,7 @@ INSTALLED_APPS = (
     'home',
     'jobs',
     'sponsors',
-
+    'spa',
 )
 
 MIDDLEWARE_CLASSES = (

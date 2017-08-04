@@ -4,6 +4,14 @@
 
 {% load staticfiles %}
 
+{% block head %}
+    <!-- opengraph so typing pdpd.com.au in slack will show the following stuff -->
+    <meta property="og:title" content="{{ coming_event.event_name }}" />
+    <meta property="og:description" content="{{ coming_event.event_description }}" />
+    <meta property="og:url" content="" />
+    <meta property="og:image" content="" />
+{% endblock %}
+
 {% block javascript %}
     <script>
         $(document).ready(function()

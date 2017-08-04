@@ -8,6 +8,7 @@ def companies(request):
     return Response([
         {
             'name':  company.name,
+            'description':  company.description,
         }
         for company in Company.objects.iterator()
     ])
