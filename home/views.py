@@ -4,13 +4,38 @@ import meetup.api
 import datetime
 import pytz
 
+def get_events(event_status): 
+    client = meetup.api.Client('73c42797541a6c207a2a2b41262a66')
+
+    group_info = client.GetGroup({'urlname': 'Perth-Django-Users-Group'})
+    group_events = client.GetEvents({'group_id': group_info.id, 'status': event_status})
+
+    return [
+        {
+            'group_id': group_info.id,
+            'event_id': event['id'],
+            'event_name': event['name'],
+            'event_address': event['venue']['address_1'],
+            'event_description': event['description'],
+            'event_yes_rsvp_count': event['yes_rsvp_count'],
+            'event_datetime': datetime.datetime.fromtimestamp(event['time'] / 1000.0, pytz.timezone('Australia/Perth'))
+        }
+        for event in reversed(group_events.results)
+    ]
 
 def home_page(request):
+    try:
+        coming_event = get_events('upcoming')[0]
+    except IndexError:
+        coming_event = {
+            'event_name': 'No upcoming event', 
+            'event_description': 'Check back in the middle of the month',
+        }
     return render_to_response(
         'home.html',
         {
+            'coming_event': coming_event, 
         },
-
         # context_instance=RequestContext(request)
     )
 
@@ -33,25 +58,7 @@ def ajax_meetups_tab(request, event_status):
     :param event_status: upcoming, past, proposed, suggested, cancelled, draft
     :return:
     """
-
-    client = meetup.api.Client('73c42797541a6c207a2a2b41262a66')
-
-    group_info = client.GetGroup({'urlname': 'Perth-Django-Users-Group'})
-    group_events = client.GetEvents({'group_id': group_info.id, 'status': event_status})
-
-    events = [
-        {
-            'group_id': group_info.id,
-            'event_id': event['id'],
-            'event_name': event['name'],
-            'event_address': event['venue']['address_1'],
-            'event_description': event['description'],
-            'event_yes_rsvp_count': event['yes_rsvp_count'],
-            'event_datetime': datetime.datetime.fromtimestamp(event['time'] / 1000.0, pytz.timezone('Australia/Perth'))
-        }
-
-        for event in reversed(group_events.results)
-    ]
+    events = get_events(event_status)
 
     return render_to_response(
         'ajax/ajax_meetups.html',
