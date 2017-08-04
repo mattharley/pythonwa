@@ -1,6 +1,9 @@
 <html>
     <head>
         <script src="//unpkg.com/mithril/mithril.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/qtip2/3.0.3/jquery.qtip.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/qtip2/3.0.3/basic/jquery.qtip.min.css" />
     </head>
     <body>
         <div id="spa"></div>
@@ -36,21 +39,34 @@
                         m(SubCompanyApp), 
                         m('b',
                             {
-                                oncreate: (vnode) => {
-                                    /*
-                                    $(vnode.dom).css(
-                                        {'background': 'red'});
-                                    */
-                                },
-                                onupdate: () => {},
-                                ondelete: () => {},
                             },
                             'Number of companies:', companies.length),
                         m('ul.custom-list',
-                            companies.map(company => {
-                                var args = company.description ? ['a', {href: ''}] : ['span', {}];
-                                return m('li', m.apply(null, args.concat([company.name])));
-                                // OR
+                            companies.map((company, i) => {
+                                var args = company.description ?
+                                    ['a', {
+                                        href: '',
+                                        'data-tooltip-content': "#content" + i,
+                                        oncreate: (vnode) => {
+                                            /////////////////////////
+                                            // APPLY JQUERY PLUGIN //
+                                            /////////////////////////
+
+                                            // Instantiate jquery qTip plugin after virtual <a> creation
+                                            $(vnode.dom).qtip({
+                                                content: {
+                                                    text: company.description
+                                                }
+                                            });
+                                        },
+                                        onupdate: () => {
+                                            // Run qTip update function (if any) if virtual <a> has changed
+                                        },
+                                        ondelete: () => {
+                                            // Uninstantiate qTip if you like
+                                        },
+                                    }] :
+                                    ['span', {}];
                                 return m('li', m(...args, company.name));
                             })),
                         m('button',
