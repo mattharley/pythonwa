@@ -1,4 +1,5 @@
 from django.shortcuts import render_to_response
+from django.utils.html import strip_tags
 
 import meetup.api
 import datetime
@@ -17,6 +18,7 @@ def get_events(event_status):
             'event_name': event['name'],
             'event_address': event['venue']['address_1'],
             'event_description': event['description'],
+            'og_event_description': strip_tags(event['description']).encode('ascii', 'ignore'),
             'event_yes_rsvp_count': event['yes_rsvp_count'],
             'event_datetime': datetime.datetime.fromtimestamp(event['time'] / 1000.0, pytz.timezone('Australia/Perth'))
         }
@@ -28,8 +30,9 @@ def home_page(request):
         coming_event = get_events('upcoming')[0]
     except IndexError:
         coming_event = {
-            'event_name': 'No upcoming event', 
+            'event_name': 'No upcoming event',
             'event_description': 'Check back in the middle of the month',
+            'og_event_description': 'Check back in the middle of the month',
         }
     return render_to_response(
         'home.html',
