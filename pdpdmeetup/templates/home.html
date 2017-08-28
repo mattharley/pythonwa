@@ -6,10 +6,10 @@
 
 {% block head %}
     <!-- opengraph so typing pdpd.com.au in slack will show the following stuff -->
-    <meta property="og:title" content="{{ coming_event.event_name }}" />
+    <meta property="og:title" content="{{ coming_event.og_event_name }}" />
     <meta property="og:description" content="{{ coming_event.og_event_description }}" />
     <meta property="og:url" content="" />
-    <meta property="og:image" content="" />
+    <meta property="og:image" content="https://secure.meetupstatic.com/photos/event/c/e/6/2/highres_448672834.jpeg" />
 {% endblock %}
 
 {% block javascript %}

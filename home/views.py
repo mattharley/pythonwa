@@ -1,27 +1,29 @@
 from django.shortcuts import render_to_response
 from django.utils.html import strip_tags
+from django.utils import dateformat
 
 import meetup.api
 import datetime
 import pytz
 
-def get_events(event_status): 
+def get_events(event_status):
     client = meetup.api.Client('73c42797541a6c207a2a2b41262a66')
 
     group_info = client.GetGroup({'urlname': 'Perth-Django-Users-Group'})
     group_events = client.GetEvents({'group_id': group_info.id, 'status': event_status})
 
     return [
-        {
+        (lambda event_datetime: {
             'group_id': group_info.id,
             'event_id': event['id'],
             'event_name': event['name'],
-            'event_address': event['venue']['address_1'],
+            'og_event_name': '({}) {}'.format(dateformat.format(event_datetime, 'D d M'), event['name']),
+            'event_address': '{}, {}'.format(event['venue']['name'], event['venue']['address_1']),
             'event_description': event['description'],
             'og_event_description': strip_tags(event['description']).encode('ascii', 'ignore'),
             'event_yes_rsvp_count': event['yes_rsvp_count'],
-            'event_datetime': datetime.datetime.fromtimestamp(event['time'] / 1000.0, pytz.timezone('Australia/Perth'))
-        }
+            'event_datetime': event_datetime,
+        })(datetime.datetime.fromtimestamp(event['time'] / 1000.0, pytz.timezone('Australia/Perth')))
         for event in reversed(group_events.results)
     ]
 
