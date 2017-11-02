@@ -8,7 +8,7 @@ import home.views
 urlpatterns = [
     url(r'^$', home.views.home_page, name='home-page'),
     url(r'^getinvolved/?$', home.views.get_involved, name='get-involved'),
-    url(r'/meetupsapi/(?P<event_status>\w+)/?$', home.views.ajax_meetups_tab, name='ajax_meetups_tab'),
+    url(r'meetupsapi/(?P<event_status>\w+)/?$', home.views.ajax_meetups_tab, name='ajax_meetups_tab'),
     url(
         r'^feedback/?$',
         RedirectView.as_view(url='https://docs.google.com/forms/d/e/1FAIpQLSem2CafmsLKWUFUQ2lFZGVbZTcOJtj5CrAcpKtUHvsjzNcMXw/viewform?usp=sf_linkm'),
