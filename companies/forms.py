@@ -1,7 +1,8 @@
 from django import forms
-from PIL import Image
-from django.core.validators import MaxLengthValidator, RegexValidator
-import datetime
+# from PIL import Image
+# from django.core.validators import MaxLengthValidator, RegexValidator
+from django.core.validators import RegexValidator
+# import datetime
 
 name_validation = RegexValidator(r"^[A-Za-z ]{1,100}$")
 abn_validation = RegexValidator(r"^[0-9]{11,11}$")

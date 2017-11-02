@@ -50,7 +50,7 @@ class Profile(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(unique=True)
     frontend = models.TextField()
     backend = models.TextField()
-    year_started_learning = models.IntegerField(('year_started_learning'), max_length=4, choices=year_choices,
+    year_started_learning = models.IntegerField('year_started_learning', max_length=4, choices=year_choices,
                                                 default=datetime.datetime.now().year)
     company = models.TextField()
     is_staff = models.BooleanField(_('staff status'), default=False,
@@ -75,7 +75,7 @@ class Profile(AbstractBaseUser, PermissionsMixin):
         return "/users/%s/" % urlquote(self.email)
 
     def get_full_name(self):
-        full_name = '%s' % (self.name)
+        full_name = '%s' % self.name
         return full_name.strip()
 
     def get_short_name(self):

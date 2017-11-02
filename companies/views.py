@@ -35,8 +35,8 @@ def company_create(request):
     return render(request, "companies-create.html", context)
 
 
-def company_edit(request, id=None):
-    instance = get_object_or_404(Company, id=id)
+def company_edit(request, company_id=None):
+    instance = get_object_or_404(Company, id=company_id)
 
     form = CompanyEditForm(request.POST or None, request.FILES or None)
     form.fields['name'].initial = instance.name
