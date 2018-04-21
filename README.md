@@ -12,22 +12,25 @@ Deployment
 
 https://devcenter.heroku.com/articles/getting-started-with-python#set-up
 
-Install Heroku Client to get the `heroku` command.
+Install Heroku Client to get the `heroku` command:
 
-- Arch Linux: https://aur.archlinux.org/packages/heroku-toolbelt/ https://aur.archlinux.org/packages/nodejs-heroku-cli/
-- Ubuntu: ???
+- https://devcenter.heroku.com/articles/heroku-cli
 
 Login to Heroku with Toolbelt:
+
 - `heroku login`
 
 Clone pdpdmeetup repository:
+
 - `git clone https://github.com/mattharley/pdpdmeetup.git`
 
 Add heroku remote URL:
+
 - `cd pdpdmeetup`
 - `git remote add heroku https://git.heroku.com/pdpdmeetup.git`
 
 Deploy! (Probably fail if you don't have permission on Heroku, please ask Matt for access)
+
 - `git push heroku master`
 
 
