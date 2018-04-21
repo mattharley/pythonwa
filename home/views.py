@@ -10,7 +10,10 @@ def get_events(event_status):
     client = meetup.api.Client('73c42797541a6c207a2a2b41262a66')
 
     group_info = client.GetGroup({'urlname': 'Perth-Django-Users-Group'})
-    group_events = client.GetEvents({'group_id': group_info.id, 'status': event_status})
+    try:
+        group_events = client.GetEvents({'group_id': group_info.id, 'status': event_status}).results
+    except ValueError:
+        group_events = []
 
     return [
         (lambda event_datetime: {
@@ -24,7 +27,7 @@ def get_events(event_status):
             'event_yes_rsvp_count': event['yes_rsvp_count'],
             'event_datetime': event_datetime,
         })(datetime.datetime.fromtimestamp(event['time'] / 1000.0, pytz.timezone('Australia/Perth')))
-        for event in reversed(group_events.results)
+        for event in reversed(group_events)
     ]
 
 def home_page(request):
