@@ -1,0 +1,9 @@
+Django==1.10.0
+Pillow==3.2.0
+dj-database-url==0.4.0
+gunicorn==19.4.5
+opbeat==3.3.4
+whitenoise==2.0.6
+meetup-api==0.1.1
+pytz==2016.6.1
+djangorestframework==3.6.3
