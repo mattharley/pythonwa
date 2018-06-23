@@ -3,7 +3,7 @@ from django.utils.html import strip_tags
 from django.utils import dateformat
 from django.utils import timezone
 
-from itertools import zip_longest
+from itertools import izip_longest
 
 import meetup.api
 import datetime

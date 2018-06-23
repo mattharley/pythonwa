@@ -1,3 +1,9 @@
+Python 2
+========
+
+This project runs Python 2.
+
+
 Perth Django and Python Developers
 ==================================
 
