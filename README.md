@@ -1,7 +1,7 @@
 Python 2
 ========
 
-This project runs Python 2.
+This project runs Python 2 because it's an old project and also to annoy some people.
 
 requirements.txt
 ================
