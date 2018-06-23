@@ -25,6 +25,7 @@ def get_events(event_status, from_date):
             'group_id': group_info.id,
             'event_id': event['id'],
             'event_name': event['name'],
+            'event_url': event['event_url'],
             'og_event_name': '({}) {}'.format(dateformat.format(event_datetime, 'D d M'), event['name']),
             'event_address': '{}, {}'.format(event['venue']['name'], event['venue']['address_1']),
             'event_description': event['description'],
