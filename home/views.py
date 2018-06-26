@@ -49,7 +49,7 @@ def home_page(request):
         user_args = map(int, date_str.split('-'))
         args = tuple(
             user_num or default
-            for default, user_num in zip_longest(default_args, user_args))
+            for default, user_num in izip_longest(default_args, user_args))
         date = datetime.datetime(*args, tzinfo=perth_timezone)
     else:
         date = timezone.now()
