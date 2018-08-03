@@ -27,7 +27,7 @@ def get_events(event_status, from_date):
             'event_name': event['name'],
             'event_url': event['event_url'],
             'og_event_name': '({}) {}'.format(dateformat.format(event_datetime, 'D d M'), event['name']),
-            'event_address': '{}, {}'.format(event['venue']['name'], event['venue']['address_1']),
+            'event_address': '{}, {}'.format(event['venue']['name'], event['venue']['address_1']) if 'venue' in event else '',
             'event_description': event['description'],
             'og_event_description': strip_tags(event['description']).encode('ascii', 'ignore'),
             'event_yes_rsvp_count': event['yes_rsvp_count'],
