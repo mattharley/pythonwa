@@ -6,6 +6,7 @@ html,body {
     font-weight: bold;
 }
 .prominent-links {
+    font-size: 1.4em;
     margin-top: 40px;
     overflow: hidden; /* To give child floats solid height */
 }
@@ -16,7 +17,14 @@ html,body {
     text-align: center;
 }
 .prominent-links img {
-    height: 50px;
+    height: 100px;
+}
+.sponsors {
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
 }
 .sponsors .row {
     margin-bottom: 20px;
