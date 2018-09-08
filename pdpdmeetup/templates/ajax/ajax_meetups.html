@@ -8,24 +8,30 @@
     {% for each_event in group_events %}
         <div class="panel panel-default">
             <div class="panel-body">
-                <dl class="dl-horizontal">
-
-                    <dt>Name:</dt>
-                    <dd><a href="{{ each_event.event_url }}">{{ each_event.event_name }}</a></dd>
-
-                    <dt>Description:</dt>
-                    <dd>{{ each_event.event_description|safe }} </dd>
-
-                    <dt>Where?</dt>
-                    <dd>{{ each_event.event_address }} </dd>
-
-                    <dt>Peeps Coming:</dt>
-                    <dd>{{ each_event.event_yes_rsvp_count }} </dd>
-
-                    <dt>When?</dt>
-                    <dd>{{ each_event.event_datetime|date:"d M Y, P T" }} ({{ each_event.event_datetime|naturaltime }})</dd>
-
-                </dl>
+                <table class="event-table">
+                    <tr>
+                        <td class="event-table-col1">When?</td>
+                        <td>
+                            <b title="{{ each_event.event_datetime|date:"T" }}">{{ each_event.event_datetime|date:"d M Y, P" }} ({{ each_event.event_datetime|naturaltime }})</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="event-table-col1">Name:</td>
+                        <td><a href="{{ each_event.event_url }}">{{ each_event.event_name }}</a></td>
+                    </tr>
+                    <tr>
+                        <td class="event-table-col1">Description:</td>
+                        <td>{{ each_event.event_description|safe }} </td>
+                    </tr>
+                    <tr>
+                        <td class="event-table-col1">Where?</td>
+                        <td>{{ each_event.event_address }} </td>
+                    </tr>
+                    <tr>
+                        <td class="event-table-col1">Attendance:</td>
+                        <td>{{ each_event.event_yes_rsvp_count }} </td>
+                    </tr>
+                </table>
             </div>
         </div>
     {% empty %}
