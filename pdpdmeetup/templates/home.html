@@ -29,23 +29,6 @@
             })
         })
     </script>
-
-    <script>
-        $(document).ready(function()
-        {
-            // Load any meetups with a status of 'upcoming' on page load
-            $.ajax({
-                type: "GET",
-                url: "{% url 'homeapp:ajax_meetups_tab' 'past' %}",
-                error: function(data){
-                    $('#past-meetups-tab-content').html("Ooops. I couldn't get the meetup info.");
-                    },
-                success: function(data){
-                    $('#past-meetups-tab-content').html(data);
-                }
-            })
-        })
-    </script>
 {% endblock %}
 
 {% block content %}
