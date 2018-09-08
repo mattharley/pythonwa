@@ -20,7 +20,7 @@ html,body {
     height: 100px;
 }
 .sponsors {
-    margin-top: 50px;
+    margin-top: 40px;
     display: flex;
     align-items: center;
     flex-direction: row;
