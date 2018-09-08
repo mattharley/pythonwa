@@ -11,7 +11,7 @@
                 <dl class="dl-horizontal">
 
                     <dt>Name:</dt>
-                    <dd>{{ each_event.event_name }}</dd>
+                    <dd><a href="{{ each_event.event_url }}">{{ each_event.event_name }}</a></dd>
 
                     <dt>Description:</dt>
                     <dd>{{ each_event.event_description|safe }} </dd>

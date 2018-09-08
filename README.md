@@ -1,3 +1,30 @@
+Python 2
+========
+
+This project runs Python 2 because it's an old project and also to annoy some people.
+
+requirements.txt
+================
+
+requirements.txt is for Heroku. If you try to `pip install -r requirements.txt` for local development you may get the following error caused by installing `psycopg`:
+
+    Collecting psycopg2==2.6.1 (from -r requirements.txt (line 6))
+      Using cached https://files.pythonhosted.org/packages/86/fd/cc8315be63a41fe000cce20482a917e874cdc1151e62cb0141f5e55f711e/psycopg2-2.6.1.tar.gz
+        Complete output from command python setup.py egg_info:
+        running egg_info
+        creating pip-egg-info/psycopg2.egg-info
+        writing pip-egg-info/psycopg2.egg-info/PKG-INFO
+        writing top-level names to pip-egg-info/psycopg2.egg-info/top_level.txt
+        writing dependency_links to pip-egg-info/psycopg2.egg-info/dependency_links.txt
+        writing manifest file 'pip-egg-info/psycopg2.egg-info/SOURCES.txt'
+        Error: could not determine PostgreSQL version from '10.4'
+
+        ----------------------------------------
+    Command "python setup.py egg_info" failed with error code 1 in /tmp/pip-install-FRFq2C/psycopg2/
+
+That's why you use `requirements-dev.txt` for local development.
+
+
 Perth Django and Python Developers
 ==================================
 
@@ -12,22 +39,25 @@ Deployment
 
 https://devcenter.heroku.com/articles/getting-started-with-python#set-up
 
-Install Heroku Client to get the `heroku` command.
+Install Heroku Client to get the `heroku` command:
 
-- Arch Linux: https://aur.archlinux.org/packages/heroku-toolbelt/ https://aur.archlinux.org/packages/nodejs-heroku-cli/
-- Ubuntu: ???
+- https://devcenter.heroku.com/articles/heroku-cli
 
 Login to Heroku with Toolbelt:
+
 - `heroku login`
 
 Clone pdpdmeetup repository:
+
 - `git clone https://github.com/mattharley/pdpdmeetup.git`
 
 Add heroku remote URL:
+
 - `cd pdpdmeetup`
 - `git remote add heroku https://git.heroku.com/pdpdmeetup.git`
 
 Deploy! (Probably fail if you don't have permission on Heroku, please ask Matt for access)
+
 - `git push heroku master`
 
 
