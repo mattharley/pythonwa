@@ -19,6 +19,10 @@ html,body {
 .prominent-links img {
     height: 100px;
 }
+.prominent-link-text {
+    display: inline-block;
+    padding: 5px 0;
+}
 .sponsors {
     margin-top: 40px;
     display: flex;
