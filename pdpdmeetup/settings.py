@@ -35,7 +35,7 @@ INSTALLED_APPS = (
     'django.contrib.humanize',
 
     'opbeat.contrib.django',
-    'raven.contrib.django.raven_compat',
+    #'raven.contrib.django.raven_compat',
 
     'talks',
     'companies',
