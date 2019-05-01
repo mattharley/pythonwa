@@ -18,7 +18,9 @@
 
     <div id="app">
         <h3>My talks</h3>
-
+        <ul>
+            <li v-for="talk in talks">{{ talk.event_name }}</li>
+        </ul>
         <pre>{{ talks }}</pre>
     </div>
 
@@ -39,9 +41,6 @@
                 on_response(response) {
                     this.talks = response.data.events;
                 }
-            },
-            computed: {
-
             }
         });
     </script>
