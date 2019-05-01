@@ -1,3 +1,4 @@
+from django.http import JsonResponse
 from django.shortcuts import render_to_response
 from django.utils.html import strip_tags
 from django.utils import dateformat
@@ -90,10 +91,6 @@ def ajax_meetups_tab(request, event_status):
     """
     events = get_events(event_status, timezone.now())
 
-    return render_to_response(
-        'ajax/ajax_meetups.html',
-        {
-            "group_events": events,
-
-            'event_status': event_status,
-        })
+    return JsonResponse({
+        'events': events
+    })
