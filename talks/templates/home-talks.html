@@ -5,83 +5,25 @@
 {% load staticfiles %}
 
 {% block javascript %}
-    <script>
-        $(document).ready(function()
-        {
-            // Load any meetups with a status of 'upcoming' on page load
-            $.ajax({
-                type: "GET",
-                url: "{% url 'homeapp:ajax_meetups_tab' 'upcoming' %}",
-                error: function(data){
-                    $('#upcoming-meetups-tab-content').html("Ooops. I couldn't get the meetup info.");
-                    },
-                success: function(data){
-                    $('#upcoming-meetups-tab-content').html(data);
-                }
-            })
-        })
-    </script>
-
-    <script>
-        $(document).ready(function()
-        {
-            // Load any meetups with a status of 'upcoming' on page load
-            $.ajax({
-                type: "GET",
-                url: "{% url 'homeapp:ajax_meetups_tab' 'past' %}",
-                error: function(data){
-                    $('#past-meetups-tab-content').html("Ooops. I couldn't get the meetup info.");
-                    },
-                success: function(data){
-                    $('#past-meetups-tab-content').html(data);
-                }
-            })
-        })
-    </script>
-
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 {% endblock %}
 
 {% block content %}
+    {% verbatim %}
 
-	<h1>{{ group_name }}</h1>
-
-    <div class="row">
-        <div class="col-md-12">
-            <div class="tabbable">
-
-                <ul class="nav nav-tabs">
-                    <li class="active"><a href="#tabs1" data-toggle="tab">Upcoming</a></li>
-                    <li><a href="#tabs2" data-toggle="tab">Past</a></li>
-                </ul>
-
-                <div id="my-tab-content" class="tab-content">
-                    <div id="tabs1" class="tab-pane active">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div id="upcoming-meetups-tab-content">
-                                    <br><br><br><br><div class='text-center'> <i class='fa fa-cog fa-spin fa-3x'></i> <br> Loading Meetup Info</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div id="tabs2" class="tab-pane">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div id="past-meetups-tab-content">
-                                    <br><br><br><br><div class='text-center'> <i class='fa fa-cog fa-spin fa-3x'></i> <br> Loading Meetup Info</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> <!-- closing my-tab-content div -->
-            <br>
-            <br>
-            </div>
-        </div>
+    <div id="app">
+        {{ message }}
     </div>
 
+
+    <script>
+        var app = new Vue({
+          el: '#app',
+          data: {
+            message: 'Hello Vue!'
+          }
+        })
+    </script>
+    {% endverbatim %}
 {% endblock content %}
-
-
-
