@@ -7,23 +7,43 @@
 {% block javascript %}
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+    <script>
+        var api_url = '{% url 'homeapp:ajax_meetups_tab' 'upcoming' %}';
+    </script>
 {% endblock %}
 
 {% block content %}
     {% verbatim %}
 
     <div id="app">
-        {{ message }}
+        <h3>My talks</h3>
+
+        <pre>{{ talks }}</pre>
     </div>
 
 
     <script>
         var app = new Vue({
-          el: '#app',
-          data: {
-            message: 'Hello Vue!'
-          }
-        })
+            el: '#app',
+            data() {
+                return {
+                    talks: []
+                };
+            },
+            mounted() {
+                axios.get(api_url)
+                    .then(this.on_response);
+            },
+            methods: {
+                on_response(response) {
+                    this.talks = response.data.events;
+                }
+            },
+            computed: {
+
+            }
+        });
     </script>
     {% endverbatim %}
 {% endblock content %}
