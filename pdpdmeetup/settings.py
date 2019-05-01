@@ -33,9 +33,10 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
+    'corsheaders',
 
-    'opbeat.contrib.django',
-    'raven.contrib.django.raven_compat',
+    # 'opbeat.contrib.django',
+    # 'raven.contrib.django.raven_compat',
 
     'talks',
     'companies',
@@ -51,6 +52,8 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -141,7 +144,8 @@ MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media')
 # https://warehouse.python.org/project/whitenoise/
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
-DEBUG = 'true'
+DEBUG = True
+CORS_ORIGIN_ALLOW_ALL = DEBUG
 
 RAVEN_CONFIG = {
     'dsn': 'https://4990b44ab66041d69b4afe58a2c7f594:130b29ef20ec4aeab8baf7eb8832a5d3@sentry.io/1251585',
