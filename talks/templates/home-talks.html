@@ -18,9 +18,11 @@
 
     <div id="app">
         <h3>My talks</h3>
-        <ul>
-            <li v-for="talk in talks" v-if="talk.event_name.indexOf('Same') >= 0">{{ talk.event_name }}</li>
-        </ul>
+        <div v-for="talk in talks">
+            <div v-if="talk.og_event_description.indexOf('Robin') >= 0">
+                <a :href="talk.event_url ">{{ talk.event_name }}</a>
+            </div>
+        </div>
         <pre>{{ talks }}</pre>
     </div>
 
