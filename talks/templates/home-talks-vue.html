@@ -7,27 +7,47 @@
 {% block javascript %}
 <!-- production version, optimized for size and speed -->
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+
+<script>
+    var upcomingUrl = '{% url 'homeapp:json_meetups_tab' 'upcoming' %}';
+    var pastUrl = '{% url 'homeapp:json_meetups_tab' 'past' %}';
+</script>
+
 
 {% endblock %}
 
 {% block content %}
 
-	<h1>{{ group_name }}</h1>
+<h1>{{ group_name }}</h1>
 
 {% verbatim %} 
 
-<div id="app">
-  {{ message }}
-</div>
+    <div id="app">
+     <pre>{{ upcomingTalks }}</pre>
+    </div>
 
-<script>
-    var app = new Vue({
-      el: '#app',
-      data: {
-        message: 'Hello Vue!'
-      }
-    })
-</script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data() {
+                return {
+                    upcomingTalks: []
+                };
+            },
+            mounted() {
+                axios.get(upcomingUrl)
+                .then(this.onResponse);
+            },
+            methods: {
+                onResponse(response) {
+                    this.upcomingTalks = response.data.events;
+                }
+            }
+        });
+
+    </script>
 
 {% endverbatim %} 
 
