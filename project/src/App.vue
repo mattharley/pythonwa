@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
-    <HelloPDPD/>
+    <HelloPDPD api-url="http://localhost:8000/meetupsapi/upcoming" @rendered="onRender"/>
   </div>
 </template>
 
@@ -12,6 +12,11 @@ export default {
   name: 'app',
   components: {
     HelloPDPD
+  },
+  methods: {
+    onRender() {
+      alert('rendered!');
+    }
   }
 };
 </script>

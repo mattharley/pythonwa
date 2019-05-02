@@ -10,22 +10,23 @@
 
 <script>
 var axios = require('axios');
-var api_url = 'http://localhost:8000/meetupsapi/upcoming';
 
 export default {
   name: 'HelloPDPD',
+  props: ['apiUrl'],
   data() {
       return {
           talks: []
       };
   },
   mounted() {
-      axios.get(api_url)
+      axios.get(this.apiUrl)
           .then(this.on_response);
   },
   methods: {
       on_response(response) {
           this.talks = response.data.events;
+          this.$emit('rendered');
       }
   }
 };
