@@ -89,7 +89,7 @@ def ajax_meetups_tab(request, event_status):
     :param event_status: upcoming, past, proposed, suggested, cancelled, draft
     :return:
     """
-    events = get_events(event_status, timezone.now())
+    events = get_events(event_status, datetime.datetime.fromtimestamp(0, perth_timezone))
 
     return JsonResponse({
         'events': events
