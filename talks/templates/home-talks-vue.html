@@ -25,14 +25,14 @@
 {% verbatim %} 
 
     <div id="app">
-        <div v-for="talk in upcomingTalks">
+        <div v-for="talk in pastTalks" v-if="talk.og_event_description.indexOf('Robin') >= 0">
             <h2><a :href="talk.event_url" target="_blank">{{ talk.event_name }}</a></h2>
             <div v-html="talk.event_description"></div>
         </div>
 
         <hr />
-        
-        <pre>{{ upcomingTalks }}</pre>
+
+        <pre>{{ pastTalks }}</pre>
     </div>
 
     <script>
