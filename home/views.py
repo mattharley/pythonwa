@@ -1,3 +1,4 @@
+from django.http import JsonResponse
 from django.shortcuts import render_to_response
 from django.utils.html import strip_tags
 from django.utils import dateformat
@@ -88,7 +89,7 @@ def ajax_meetups_tab(request, event_status):
     :param event_status: upcoming, past, proposed, suggested, cancelled, draft
     :return:
     """
-    events = get_events(event_status, timezone.now())
+    events = get_events(event_status, datetime.datetime.fromtimestamp(0, perth_timezone))
 
     return render_to_response(
         'ajax/ajax_meetups.html',
@@ -97,3 +98,17 @@ def ajax_meetups_tab(request, event_status):
 
             'event_status': event_status,
         })
+
+def json_meetups_tab(request, event_status):
+    """
+    Queries the meetup.com API to get all the events of the status specified
+
+    :param request:
+    :param event_status: upcoming, past, proposed, suggested, cancelled, draft
+    :return:
+    """
+    events = get_events(event_status, datetime.datetime.fromtimestamp(0, perth_timezone))
+
+    return JsonResponse({
+        'events': events
+    })
