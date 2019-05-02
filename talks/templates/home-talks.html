@@ -8,8 +8,14 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 
+    <!-- import CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- import JavaScript -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+
     <script>
-        var api_url = '{% url 'homeapp:ajax_meetups_tab' 'past' %}';
+        var api_url = '{% url 'homeapp:ajax_meetups_tab' 'upcoming' %}';
+        var api_past_url = '{% url 'homeapp:ajax_meetups_tab' 'past' %}';
     </script>
 {% endblock %}
 
@@ -18,13 +24,35 @@
 
     <div id="app">
         <h3>My talks</h3>
-        <div v-for="talk in talks">
-            <div v-if="talk.og_event_description.indexOf('Robin') >= 0">
-                <div><a :href="talk.event_url ">{{ talk.event_name }}</a></div>
-                <div v-html="talk.event_description"></div>
-            </div>
-        </div>
-        <pre>{{ talks }}</pre>
+        <el-button>Button</el-button>
+        <el-tabs v-model="active_tab">
+
+            <el-tab-pane label="Upcoming" name="upcoming">
+                <div v-for="talk in talks">
+                    <el-card class="box-card">
+                        <div slot="header" class="clearfix">
+                            <div>
+                                <div><a :href="talk.event_url ">{{ talk.event_name }}</a></div>
+                            </div>
+                        </div>
+                        <div v-html="talk.event_description"></div>
+                    </el-card>
+                </div>
+            </el-tab-pane>
+
+            <el-tab-pane label="Past" name="past">
+                <div v-for="talk in past_talks" v-if="talk.og_event_description.indexOf('Robin') >= 0">
+                    <el-card class="box-card">
+                        <div slot="header" class="clearfix">
+                            <div>
+                                <div><a :href="talk.event_url ">{{ talk.event_name }}</a></div>
+                            </div>
+                        </div>
+                        <div v-html="talk.event_description"></div>
+                    </el-card>
+                </div>
+            </el-tab-pane>
+        </el-tabs>
     </div>
 
 
@@ -33,16 +61,24 @@
             el: '#app',
             data() {
                 return {
-                    talks: []
+                    talks: [],
+                    past_talks: [],
+                    active_tab: 'upcoming'
                 };
             },
             mounted() {
                 axios.get(api_url)
                     .then(this.on_response);
+
+                axios.get(api_past_url)
+                    .then(this.on_past_response)
             },
             methods: {
                 on_response(response) {
                     this.talks = response.data.events;
+                },
+                on_past_response(response) {
+                    this.past_talks = response.data.events;
                 }
             }
         });
