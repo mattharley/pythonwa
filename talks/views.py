@@ -17,3 +17,11 @@ def home_page(request):
         # context_instance=RequestContext(request)
     )
 
+def home_page_vue(request):
+    return render_to_response(
+        'home-talks-vue.html',
+        {
+        },
+
+        # context_instance=RequestContext(request)
+    )
