@@ -34,8 +34,8 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.humanize',
 
-    'opbeat.contrib.django',
-    'raven.contrib.django.raven_compat',
+    # 'opbeat.contrib.django',
+    # 'raven.contrib.django.raven_compat',
 
     'talks',
     'companies',
