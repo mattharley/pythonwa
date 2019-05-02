@@ -25,7 +25,14 @@
 {% verbatim %} 
 
     <div id="app">
-     <pre>{{ upcomingTalks }}</pre>
+        <div v-for="talk in upcomingTalks">
+            <h2><a :href="talk.event_url" target="_blank">{{ talk.event_name }}</a></h2>
+            <div v-html="talk.event_description"></div>
+        </div>
+
+        <hr />
+        
+        <pre>{{ upcomingTalks }}</pre>
     </div>
 
     <script>
@@ -33,17 +40,16 @@
             el: '#app',
             data() {
                 return {
-                    upcomingTalks: []
+                    upcomingTalks: [],
+                    pastTalks: []
                 };
             },
             mounted() {
                 axios.get(upcomingUrl)
-                .then(this.onResponse);
-            },
-            methods: {
-                onResponse(response) {
-                    this.upcomingTalks = response.data.events;
-                }
+                    .then((response) => this.upcomingTalks = response.data.events);
+
+                axios.get(pastUrl)
+                    .then((response) => this.pastTalks = response.data.events);
             }
         });
 
