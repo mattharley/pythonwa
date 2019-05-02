@@ -19,7 +19,7 @@
     <div id="app">
         <h3>My talks</h3>
         <ul>
-            <li v-for="talk in talks">{{ talk.event_name }}</li>
+            <li v-for="talk in talks" v-if="talk.event_name.indexOf('Same') >= 0">{{ talk.event_name }}</li>
         </ul>
         <pre>{{ talks }}</pre>
     </div>
