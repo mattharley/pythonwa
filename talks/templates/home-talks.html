@@ -20,7 +20,8 @@
         <h3>My talks</h3>
         <div v-for="talk in talks">
             <div v-if="talk.og_event_description.indexOf('Robin') >= 0">
-                <a :href="talk.event_url ">{{ talk.event_name }}</a>
+                <div><a :href="talk.event_url ">{{ talk.event_name }}</a></div>
+                <div v-html="talk.event_description"></div>
             </div>
         </div>
         <pre>{{ talks }}</pre>
