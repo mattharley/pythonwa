@@ -1,10 +1,35 @@
 <template>
     <div class="hello">
         <h1>Talks!</h1>
-        <div v-for="talk in pastTalks" v-if="talk.og_event_description.indexOf('Robin') >= 0">
-            <h2><a :href="talk.event_url" target="_blank">{{ talk.event_name }}</a></h2>
-            <div v-html="talk.event_description"></div>
-        </div>
+
+        <el-tabs v-model="active_tab">
+            <el-tab-pane label="Upcoming" name="upcoming">
+                <div v-for="talk in upcomingTalks">
+                    <el-card class="box-card">
+                        <div slot="header" class="clearfix">
+                            <div>
+                                <div><a :href="talk.event_url ">{{ talk.event_name }}</a></div>
+                            </div>
+                        </div>
+                        <div v-html="talk.event_description"></div>
+                    </el-card>
+                </div>
+            </el-tab-pane>
+
+            <el-tab-pane label="Past" name="past">
+                <p>Only show Robin's talks? <el-switch v-model="robin"></el-switch></p>
+                <div v-for="talk in pastTalks" v-if="!robin || (robin && talk.og_event_description.indexOf('Robin') >= 0)">
+                    <el-card class="box-card">
+                        <div slot="header" class="clearfix">
+                            <div>
+                                <div><a :href="talk.event_url ">{{ talk.event_name }}</a></div>
+                            </div>
+                        </div>
+                        <div v-html="talk.event_description"></div>
+                    </el-card>
+                </div>
+            </el-tab-pane>
+        </el-tabs>
 
     </div>
 </template>
