@@ -39,7 +39,8 @@
             </el-tab-pane>
 
             <el-tab-pane label="Past" name="past">
-                <div v-for="talk in past_talks" v-if="talk.og_event_description.indexOf('Robin') >= 0">
+                <p>Only show Robin's talks? <el-switch v-model="robin"></el-switch></p>
+                <div v-for="talk in past_talks" v-if="!robin || (robin && talk.og_event_description.indexOf('Robin') >= 0)">
                     <el-card class="box-card">
                         <div slot="header" class="clearfix">
                             <div>
@@ -61,7 +62,8 @@
                 return {
                     talks: [],
                     past_talks: [],
-                    active_tab: 'upcoming'
+                    active_tab: 'upcoming',
+                    robin: true,
                 };
             },
             mounted() {
