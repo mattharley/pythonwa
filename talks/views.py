@@ -10,7 +10,7 @@ class TalkListView(ListView):
 
 def home_page(request):
     return render_to_response(
-        'home-talks.html',
+        'home-talks-mithril.html' if 'mithril' in request.GET else 'home-talks.html',
         {
         },
 

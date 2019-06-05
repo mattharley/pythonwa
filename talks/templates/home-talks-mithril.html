@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+
+{#{% block tabtitle %} {{ title }} {% endblock tabtitle %}#}
+
+{% load staticfiles %}
+
+{% block javascript %}
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/mithril@next/mithril.js"></script>
+
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <script>
+        var api_url = '{% url 'homeapp:ajax_meetups_tab' 'upcoming' %}';
+        var api_past_url = '{% url 'homeapp:ajax_meetups_tab' 'past' %}';
+    </script>
+{% endblock %}
+
+{% block content %}
+    {% verbatim %}
+    Mithril Version
+
+    <div id="app"></div>
+
+    <script>
+        var state = {
+            active_tab: 'Upcoming',
+            talks: [],
+            past_talks: [],
+            robin: false,
+        }
+        axios.get(api_url).then(response => {
+            state.talks = response.data.events;
+            m.redraw();
+        });
+        m.request(api_past_url).then(data => {
+            state.past_talks = data.events;
+        });
+
+        function tabs(robin, tabbedPages) {
+            return m('div',
+                m('ul.tabs',
+                    {
+                        oncreate: vnode =>
+                            M.Tabs.init(vnode.dom, {duration: 300}),
+                    },
+                    tabbedPages.map(([title, content]) =>
+                        m('li.tab.col.s6',
+                            m('a',
+                                {
+                                    class: state.active_tab === title ?
+                                        'active' : '',
+                                    onclick: () => {
+                                        state.active_tab = title;
+                                    }
+                                },
+                                title)))),
+                tabbedPages
+                    .filter(([title]) => title === state.active_tab)
+                    .map(([title, talks]) => m('div',
+                        m('.switch', m('label',
+                        'Only show Robin\'s talks?',
+                            m('input[type=checkbox]', {
+                                checked: robin,
+                                onchange: e => {
+                                    state.robin = e.target.checked
+                                },
+                            }),
+                            m('span.lever'))),
+                        m('ul', talks
+                            .filter(talk =>
+                                ! robin || talk.og_event_description.indexOf('Robin') >= 0)
+                            .map(talk =>
+                               m('.el-card.box-card.is-always-shadow',
+                                m('.el-card__header', m('a',
+                                    { href: talk.event_url },
+                                    talk.event_name)),
+                                m('.el-card__body', m.trust(talk.event_description))))))));
+        }
+        m.mount(document.getElementById('app'), {
+            view: function() {
+                return m('div',
+                    tabs(state.robin, [
+                        ['Upcoming', state.talks],
+                        ['Past', state.past_talks],
+                    ]));
+            }
+        });
+    </script>
+    {% endverbatim %}
+{% endblock content %}
