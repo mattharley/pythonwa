@@ -6,6 +6,7 @@ from django.utils import timezone
 from itertools import izip_longest
 
 import meetup.api
+from meetup.exceptions import HttpClientError
 import datetime
 import pytz
 
@@ -13,34 +14,37 @@ perth_timezone = pytz.timezone('Australia/Perth')
 
 
 def get_events(event_status, from_date):
-    client = meetup.api.Client('73c42797541a6c207a2a2b41262a66')
-
-    group_info = client.GetGroup({'urlname': 'Perth-Django-Users-Group'})
     try:
-        group_events = client.GetEvents({'group_id': group_info.id, 'status': event_status}).results
-    except ValueError:
-        group_events = []
+        client = meetup.api.Client('73c42797541a6c207a2a2b41262a66')
 
-    iterable = (
-        (lambda event_datetime: {
-            'group_id': group_info.id,
-            'event_id': event['id'],
-            'event_name': event['name'],
-            'event_url': event['event_url'],
-            'og_event_name': '({}) {}'.format(dateformat.format(event_datetime, 'D d M'), event['name']),
-            'event_address': '{}, {}'.format(event['venue']['name'], event['venue']['address_1']) if 'venue' in event else '',
-            'event_description': event['description'],
-            'og_event_description': strip_tags(event['description']).encode('ascii', 'ignore'),
-            'event_yes_rsvp_count': event['yes_rsvp_count'],
-            'event_datetime': event_datetime,
-        })(datetime.datetime.fromtimestamp(event['time'] / 1000.0, perth_timezone))
-        for event in sorted(group_events, key=lambda d: d['time']))
+        group_info = client.GetGroup({'urlname': 'Perth-Django-Users-Group'})
+        try:
+            group_events = client.GetEvents({'group_id': group_info.id, 'status': event_status}).results
+        except ValueError:
+            group_events = []
 
-    return [
-        event
-        for event in iterable
-        if event['event_datetime'] >= from_date
-    ]
+        iterable = (
+            (lambda event_datetime: {
+                'group_id': group_info.id,
+                'event_id': event['id'],
+                'event_name': event['name'],
+                'event_url': event['event_url'],
+                'og_event_name': '({}) {}'.format(dateformat.format(event_datetime, 'D d M'), event['name']),
+                'event_address': '{}, {}'.format(event['venue']['name'], event['venue']['address_1']) if 'venue' in event else '',
+                'event_description': event['description'],
+                'og_event_description': strip_tags(event['description']).encode('ascii', 'ignore'),
+                'event_yes_rsvp_count': event['yes_rsvp_count'],
+                'event_datetime': event_datetime,
+            })(datetime.datetime.fromtimestamp(event['time'] / 1000.0, perth_timezone))
+            for event in sorted(group_events, key=lambda d: d['time']))
+        return [
+            event
+            for event in iterable
+            if event['event_datetime'] >= from_date
+        ]
+    except HttpClientError:
+        return []
+
 
 
 def home_page(request):
