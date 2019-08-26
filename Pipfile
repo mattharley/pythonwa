@@ -20,6 +20,7 @@ pytz = "*"
 djangorestframework = ">=3.6.3"
 raven = "*"
 Pillow = ">=3.2.0"
+cachetools = "*"
 
 [requires]
 python_version = "3.7"

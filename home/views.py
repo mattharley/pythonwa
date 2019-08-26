@@ -1,6 +1,5 @@
-from functools import lru_cache
-
 import requests
+from cachetools import cached, TTLCache
 from django.shortcuts import render
 from django.utils.html import strip_tags
 from django.utils import dateformat
@@ -50,7 +49,7 @@ def get_events(event_status, from_date):
         return []
 
 
-@lru_cache()
+@cached(cache=TTLCache(maxsize=1024, ttl=60*15))  # cache for 15 minutes
 def get_meetups():
     """ get all the upcomming meetup events """
     results = None  # return None only if the request fails
