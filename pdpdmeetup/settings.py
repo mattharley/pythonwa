@@ -34,7 +34,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.humanize',
 
-    'opbeat.contrib.django',
+    # 'opbeat.contrib.django',  # pulling this out because py3
     'raven.contrib.django.raven_compat',
 
     'talks',
