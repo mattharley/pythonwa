@@ -34,7 +34,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.humanize',
 
-    'opbeat.contrib.django',
+    # 'opbeat.contrib.django',  # pulling this out because py3
     'raven.contrib.django.raven_compat',
 
     'talks',
@@ -46,13 +46,12 @@ INSTALLED_APPS = (
     'spa',
 )
 
-MIDDLEWARE_CLASSES = (
-    'opbeat.contrib.django.middleware.OpbeatAPMMiddleware',
+MIDDLEWARE = (
+    # 'opbeat.contrib.django.middleware.OpbeatAPMMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
@@ -147,5 +146,5 @@ RAVEN_CONFIG = {
     'dsn': 'https://4990b44ab66041d69b4afe58a2c7f594:130b29ef20ec4aeab8baf7eb8832a5d3@sentry.io/1251585',
     # If you are using git, you can also automatically configure the
     # release based on the git info.
-    #'release': raven.fetch_git_sha(os.path.abspath(os.pardir)),
+    # 'release': raven.fetch_git_sha(os.path.abspath(os.pardir)),
 }

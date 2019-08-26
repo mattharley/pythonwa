@@ -6,28 +6,27 @@
 
 {% block head %}
     <!-- opengraph so typing pdpd.com.au in slack will show the following stuff -->
-    <meta property="og:title" content="{{ coming_event.og_event_name }}" />
-    <meta property="og:description" content="{{ coming_event.og_event_description }}" />
-    <meta property="og:url" content="" />
-    <meta property="og:image" content="https://secure.meetupstatic.com/photos/event/c/e/6/2/highres_448672834.jpeg" />
+    <meta property="og:title" content="{{ coming_event.og_event_name }}"/>
+    <meta property="og:description" content="{{ coming_event.og_event_description }}"/>
+    <meta property="og:url" content=""/>
+    <meta property="og:image" content="https://secure.meetupstatic.com/photos/event/c/e/6/2/highres_448672834.jpeg"/>
 {% endblock %}
 
 {% block javascript %}
     <script>
-        $(document).ready(function()
-        {
-            // Load any meetups with a status of 'upcoming' on page load
-            $.ajax({
-                type: "GET",
-                url: "{% url 'homeapp:ajax_meetups_tab' 'upcoming' %}",
-                error: function(data){
-                    $('#upcoming-meetups-tab-content').html("Ooops. I couldn't get the meetup info.");
-                    },
-                success: function(data){
-                    $('#upcoming-meetups-tab-content').html(data);
-                }
-            })
+      $(document).ready(function () {
+        // Load any meetups with a status of 'upcoming' on page load
+        $.ajax({
+          type: "GET",
+          url: "{% url 'homeapp:ajax_meetups_tab' 'upcoming' %}",
+          error: function (data) {
+            $('#upcoming-meetups-tab-content').html("Ooops. I couldn't get the meetup info.");
+          },
+          success: function (data) {
+            $('#upcoming-meetups-tab-content').html(data);
+          }
         })
+      })
     </script>
 {% endblock %}
 
@@ -44,15 +43,16 @@
                         </div>
                         <div class="prominent-links">
                             <a href="http://www.meetup.com/Perth-Django-Users-Group/">
-                                <img src="https://a248.e.akamai.net/secure.meetupstatic.com/s/img/642287997414509021596/logo/svg/logo--mSwarm--2color.svg" alt="Python Meetup" />
+                                <img src="https://a248.e.akamai.net/secure.meetupstatic.com/s/img/642287997414509021596/logo/svg/logo--mSwarm--2color.svg"
+                                     alt="Python Meetup"/>
                                 <span class="prominent-link-text">Meet with us on <b>Meetup</b></span>
                             </a>
                             <a href="https://pdpdmeetup-slack.herokuapp.com/">
-                                <img src="https://statsbot.co/images/5890f513776b88ea2b964e97_slack-1.svg" alt="Python Slack" />
+                                <img src="https://statsbot.co/images/5890f513776b88ea2b964e97_slack-1.svg" alt="Python Slack"/>
                                 <span class="prominent-link-text">Chat with us on <b>Slack</b></span>
                             </a>
                             <a href="https://github.com/mattharley/pdpdmeetup">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" alt="PDPD GitHub" />
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" alt="PDPD GitHub"/>
                                 <span class="prominent-link-text">Code with us on <b>Github</b></span>
                             </a>
                         </div>
@@ -104,7 +104,8 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div id="upcoming-meetups-tab-content">
-                                    <br><br><br><br><div class='text-center'> <i class='fa fa-cog fa-spin fa-3x'></i> <br> Loading Meetup Info</div>
+                                    <br><br><br><br>
+                                    <div class='text-center'><i class='fa fa-cog fa-spin fa-3x'></i> <br> Loading Meetup Info</div>
                                 </div>
                             </div>
                         </div>

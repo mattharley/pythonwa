@@ -2,21 +2,21 @@
 
 {% block content %}
     <div class="profile-group">
-    <h2>Developer profiles:</h2>
-    <ul class="profile list">
-        {% for profile in object_list %}
-            <li >
-                <img src="{{ profile.photo }}" class="profile image"></img>
-                <div class="profile user">
-                	<p class="profile name"><b>Name:</b> {{ profile.name }}</p>
-                	<p class="profile email"><b>Email:</b> {{ profile.email }}</p>
-                    <p class="profile frontend"><b>Frontend:</b> {{ profile.frontend }}</p>
-                    <p class="profile backend"><b>Backend:</b> {{ profile.backend }}</p>
-                    <p class="profile year-started"><b>Year Started:</b> {{ profile.year_started_learning }}</p>
-                    <p class="profile company"><b>Company:</b> {{ profile.company }}</p>
-                </div>
-            </li>
-        {% endfor %}
-    </ul>
+        <h2>Developer profiles:</h2>
+        <ul class="profile list">
+            {% for profile in object_list %}
+                <li>
+                    <img src="{{ profile.photo }}" class="profile image"></img>
+                    <div class="profile user">
+                        <p class="profile name"><b>Name:</b> {{ profile.name }}</p>
+                        <p class="profile email"><b>Email:</b> {{ profile.email }}</p>
+                        <p class="profile frontend"><b>Frontend:</b> {{ profile.frontend }}</p>
+                        <p class="profile backend"><b>Backend:</b> {{ profile.backend }}</p>
+                        <p class="profile year-started"><b>Year Started:</b> {{ profile.year_started_learning }}</p>
+                        <p class="profile company"><b>Company:</b> {{ profile.company }}</p>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
     </div>
 {% endblock %}

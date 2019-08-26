@@ -1,4 +1,5 @@
 from django.conf.urls import include, url
+from django.urls import path
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
@@ -9,7 +10,7 @@ urlpatterns = [
                   # url(r'^$', 'pdpdmeetup.views.home', name='home'),
                   # url(r'^blog/', include('blog.urls')),
                   url(r'^', include('home.urls', namespace='homeapp')),
-                  url(r'^admin/', include(admin.site.urls)),
+                  path('admin/', admin.site.urls),
                   url(r'^spa/$', TemplateView.as_view(template_name='spa/spa.html')),
                   url(r'^', include('talks.urls', namespace='talksapp')),
                   url(r'^', include('companies.urls')),

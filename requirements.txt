@@ -1,11 +1,18 @@
-Django==1.10.0
-Pillow==3.2.0
+-i https://pypi.org/simple
+certifi==2019.6.16
+chardet==3.0.4
 dj-database-url==0.4.0
-gunicorn==19.4.5
-opbeat==3.3.4
-psycopg2==2.7.5
-whitenoise==2.0.6
+django==2.2.4
+djangorestframework==3.10.2
+gunicorn==19.9.0
+idna==2.8
 meetup-api==0.1.1
-pytz==2016.6.1
-djangorestframework==3.6.3
-raven==6.9.0
+pillow==6.1.0
+psycopg2==2.7.5
+pytz==2019.2
+raven==6.10.0
+requests==2.22.0
+six==1.12.0
+sqlparse==0.3.0
+urllib3==1.25.3
+whitenoise==2.0.6

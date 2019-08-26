@@ -1,5 +1,5 @@
 from django.views.generic.list import ListView
-from django.shortcuts import render_to_response
+from django.shortcuts import render
 
 from .models import Talk
 
@@ -9,11 +9,11 @@ class TalkListView(ListView):
 
 
 def home_page(request):
-    return render_to_response(
+    return render(
+        request,
         'home-talks.html',
         {
         },
 
         # context_instance=RequestContext(request)
     )
-

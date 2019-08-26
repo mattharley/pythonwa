@@ -1,7 +1,7 @@
 from django.db import models
-from django.contrib.auth.hashers import check_password
+# from django.contrib.auth.hashers import check_password
 from django.contrib.auth.models import User
-from django.conf import settings
+# from django.conf import settings
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.utils import timezone
 from django.utils.http import urlquote
@@ -50,8 +50,7 @@ class Profile(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(unique=True)
     frontend = models.TextField()
     backend = models.TextField()
-    year_started_learning = models.IntegerField(('year_started_learning'), max_length=4, choices=year_choices,
-                                                default=datetime.datetime.now().year)
+    year_started_learning = models.IntegerField(_('year_started_learning'), choices=year_choices, default=datetime.datetime.now().year)
     company = models.TextField()
     is_staff = models.BooleanField(_('staff status'), default=False,
                                    help_text=_('Designates whether the user can log into this admin '
@@ -75,7 +74,7 @@ class Profile(AbstractBaseUser, PermissionsMixin):
         return "/users/%s/" % urlquote(self.email)
 
     def get_full_name(self):
-        full_name = '%s' % (self.name)
+        full_name = '%s' % self.name
         return full_name.strip()
 
     def get_short_name(self):

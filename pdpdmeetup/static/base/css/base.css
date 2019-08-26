@@ -1,28 +1,34 @@
-html,body {
-	width: 100%;
-	height: 100%;
+html, body {
+    width: 100%;
+    height: 100%;
 }
+
 .bold {
     font-weight: bold;
 }
+
 .prominent-links {
     font-size: 1.4em;
     margin-top: 40px;
     overflow: hidden; /* To give child floats solid height */
 }
+
 .prominent-links a {
     display: block;
     float: left;
     width: 33%;
     text-align: center;
 }
+
 .prominent-links img {
     height: 100px;
 }
+
 .prominent-link-text {
     display: inline-block;
     padding: 5px 0;
 }
+
 .sponsors {
     margin-top: 40px;
     display: flex;
@@ -30,13 +36,16 @@ html,body {
     flex-direction: row;
     justify-content: center;
 }
+
 .sponsors .row {
     margin-bottom: 20px;
 }
+
 .event-table-col1 {
     text-align: right;
     font-weight: bold;
 }
+
 .event-table td {
     padding: 0 10px;
     vertical-align: top;
