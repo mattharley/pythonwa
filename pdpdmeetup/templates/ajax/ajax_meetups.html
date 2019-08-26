@@ -4,37 +4,43 @@
 
 <br>
 <div class="col-md-12">
-    {% for each_event in group_events %}
-        <div class="panel panel-default">
-            <div class="panel-body">
-                <table class="event-table">
-                    <tr>
-                        <td class="event-table-col1">When?</td>
-                        <td>
-                            <b title="{{ each_event.event_datetime|date:"T" }}">{{ each_event.event_datetime|date:"l, d M Y, P" }}
-                                ({{ each_event.event_datetime|naturaltime }})</b>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="event-table-col1">Name:</td>
-                        <td><a href="{{ each_event.event_url }}">{{ each_event.event_name }}</a></td>
-                    </tr>
-                    <tr>
-                        <td class="event-table-col1">Description:</td>
-                        <td>{{ each_event.event_description|safe }} </td>
-                    </tr>
-                    <tr>
-                        <td class="event-table-col1">Where?</td>
-                        <td>{{ each_event.event_address }} </td>
-                    </tr>
-                    <tr>
-                        <td class="event-table-col1">Attendance:</td>
-                        <td>{{ each_event.event_yes_rsvp_count }} </td>
-                    </tr>
-                </table>
+    {% if group_events is None  %}
+        <p>
+            Unable to connect to <a href="http://www.meetup.com/Perth-Django-Users-Group/">PDPD on meetup.com!</a>
+        </p>
+    {% else %}
+        {% for each_event in group_events %}
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <table class="event-table">
+                        <tr>
+                            <td class="event-table-col1">When?</td>
+                            <td>
+                                <b title="{{ each_event.event_datetime|date:"T" }}">{{ each_event.event_datetime|date:"l, d M Y, P" }}
+                                    ({{ each_event.event_datetime|naturaltime }})</b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="event-table-col1">Name:</td>
+                            <td><a href="{{ each_event.event_url }}">{{ each_event.event_name }}</a></td>
+                        </tr>
+                        <tr>
+                            <td class="event-table-col1">Description:</td>
+                            <td>{{ each_event.event_description|safe }} </td>
+                        </tr>
+                        <tr>
+                            <td class="event-table-col1">Where?</td>
+                            <td>{{ each_event.event_address }} </td>
+                        </tr>
+                        <tr>
+                            <td class="event-table-col1">Attendance:</td>
+                            <td>{{ each_event.event_yes_rsvp_count }} </td>
+                        </tr>
+                    </table>
+                </div>
             </div>
-        </div>
-    {% empty %}
-        <p>No {{ event_status }} meetup events were found. <a href="http://www.meetup.com/Perth-Django-Users-Group/">Suggest a meetup!</a></p>
-    {% endfor %}
+        {% empty %}
+            <p>No {{ event_status }} meetup events were found. <a href="http://www.meetup.com/Perth-Django-Users-Group/">Suggest a meetup!</a></p>
+        {% endfor %}
+    {% endif %}
 </div>

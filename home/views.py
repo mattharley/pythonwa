@@ -53,7 +53,7 @@ def get_events(event_status, from_date):
 @lru_cache()
 def get_meetups():
     """ get all the upcomming meetup events """
-    results = None
+    results = None  # return None only if the request fails
     try:
         response = requests.get(MEETUP_EVENTS_URL)
         if response.status_code == 200:
@@ -103,7 +103,7 @@ def home_page(request):
     try:
         # coming_event = get_events('upcoming', date)[0]
         coming_event = get_meetups()[0]
-    except IndexError:
+    except (IndexError, AttributeError):
         coming_event = {
             'event_name': 'No upcoming event',
             'event_description': 'Check back in the middle of the month',
