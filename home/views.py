@@ -3,7 +3,7 @@ from django.utils.html import strip_tags
 from django.utils import dateformat
 from django.utils import timezone
 
-from itertools import izip_longest
+from itertools import zip_longest
 
 import meetup.api
 from meetup.exceptions import HttpClientError
@@ -46,16 +46,15 @@ def get_events(event_status, from_date):
         return []
 
 
-
 def home_page(request):
-    date_str = ''.join(request.GET.keys()).strip()
+    date_str = ''.join(list(request.GET.keys())).strip()
     if date_str:
         now = timezone.now()
         default_args = (now.year, now.month, 1)
-        user_args = map(int, date_str.split('-'))
+        user_args = list(map(int, date_str.split('-')))
         args = tuple(
             user_num or default
-            for default, user_num in izip_longest(default_args, user_args))
+            for default, user_num in zip_longest(default_args, user_args))
         date = datetime.datetime(*args, tzinfo=perth_timezone)
     else:
         date = timezone.now()
