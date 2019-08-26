@@ -42,7 +42,7 @@ def get_events(event_status, from_date):
             if event['event_datetime'] >= from_date
         ]
     except HttpClientError:
-        return
+        return []
 
 
 def home_page(request):
@@ -68,7 +68,7 @@ def home_page(request):
     return render_to_response(
         'home.html',
         {
-            'coming_event': coming_event, 
+            'coming_event': coming_event,
         },
         # context_instance=RequestContext(request)
     )
