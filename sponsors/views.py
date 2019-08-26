@@ -1,8 +1,9 @@
-from django.shortcuts import render_to_response
+from django.shortcuts import render
 
 
 def home_page(request):
-    return render_to_response(
+    return render(
+        request,
         'home-sponsors.html',
         {
         },

@@ -1,4 +1,4 @@
-from django.shortcuts import render_to_response
+from django.shortcuts import render
 from django.utils.html import strip_tags
 from django.utils import dateformat
 from django.utils import timezone
@@ -66,7 +66,8 @@ def home_page(request):
             'event_description': 'Check back in the middle of the month',
             'og_event_description': 'Check back in the middle of the month',
         }
-    return render_to_response(
+    return render(
+        request,
         'home.html',
         {
             'coming_event': coming_event,
@@ -76,7 +77,8 @@ def home_page(request):
 
 
 def get_involved(request):
-    return render_to_response(
+    return render(
+        request,
         'getinvolved.html',
         {
         },
@@ -95,7 +97,8 @@ def ajax_meetups_tab(request, event_status):
     """
     events = get_events(event_status, timezone.now())
 
-    return render_to_response(
+    return render(
+        request,
         'ajax/ajax_meetups.html',
         {
             "group_events": events,

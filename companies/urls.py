@@ -8,6 +8,8 @@ from django.conf import settings
 
 from companies.api import companies
 
+
+app_name = 'companies'
 urlpatterns = [
     # Examples:
     # url(r'^companies/', 'pdpdmeetup.views.home', name='home'),
