@@ -9,15 +9,15 @@ rope = "*"
 pylint = "*"
 
 [packages]
-django = "==1.10"
+django = ">=2.2,<3"
 dj-database-url = "==0.4.0"
 gunicorn = "*"
 #opbeat = "*"
 psycopg2 = "==2.7.5"
 whitenoise = "==2.0.6"
-meetup-api = "==0.1.1"
+meetup-api = ">=0.1.1"
 pytz = "*"
-djangorestframework = "==3.6.3"
+djangorestframework = ">=3.6.3"
 raven = "*"
 Pillow = ">=3.2.0"
 

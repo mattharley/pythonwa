@@ -6,6 +6,8 @@ from django.views.generic.base import RedirectView
 
 import home.views
 
+
+app_name = 'home'
 urlpatterns = [
     url(r'^$', home.views.home_page, name='home-page'),
     url(r'^getinvolved/?$', home.views.get_involved, name='get-involved'),
