@@ -16,4 +16,3 @@ def home_page(request):
 
         # context_instance=RequestContext(request)
     )
-

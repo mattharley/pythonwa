@@ -11,6 +11,7 @@ import pytz
 
 perth_timezone = pytz.timezone('Australia/Perth')
 
+
 def get_events(event_status, from_date):
     client = meetup.api.Client('73c42797541a6c207a2a2b41262a66')
 
@@ -41,6 +42,7 @@ def get_events(event_status, from_date):
         if event['event_datetime'] >= from_date
     ]
 
+
 def home_page(request):
     date_str = ''.join(request.GET.keys()).strip()
     if date_str:
@@ -64,7 +66,7 @@ def home_page(request):
     return render_to_response(
         'home.html',
         {
-            'coming_event': coming_event, 
+            'coming_event': coming_event,
         },
         # context_instance=RequestContext(request)
     )

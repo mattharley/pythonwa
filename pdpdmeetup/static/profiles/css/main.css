@@ -1,27 +1,27 @@
 .profile .image {
-	height: 100px;
-	width: 100px;
-	float:left;
-	padding-right: 10px;
+    height: 100px;
+    width: 100px;
+    float: left;
+    padding-right: 10px;
 }
 
 body > div.container-fluid > div > ul {
-	list-style-type: none;
+    list-style-type: none;
 }
 
 
 .profile {
-	margin: 5px;
+    margin: 5px;
 }
 
 .profile .user {
-	float:left;
+    float: left;
 }
 
 .profile .name {
-	display: inline;
+    display: inline;
 }
 
 .profile-group {
-	width: 100%;
+    width: 100%;
 }

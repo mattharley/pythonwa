@@ -147,5 +147,5 @@ RAVEN_CONFIG = {
     'dsn': 'https://4990b44ab66041d69b4afe58a2c7f594:130b29ef20ec4aeab8baf7eb8832a5d3@sentry.io/1251585',
     # If you are using git, you can also automatically configure the
     # release based on the git info.
-    #'release': raven.fetch_git_sha(os.path.abspath(os.pardir)),
+    # 'release': raven.fetch_git_sha(os.path.abspath(os.pardir)),
 }
