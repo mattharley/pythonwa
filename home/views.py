@@ -16,37 +16,37 @@ PERTH_TIMEZONE = pytz.timezone('Australia/Perth')
 MEETUP_EVENTS_URL = 'https://api.meetup.com/Perth-Django-Users-Group/events/'
 
 
-def get_events(event_status, from_date):
-    try:
-        client = meetup.api.Client('73c42797541a6c207a2a2b41262a66')
-
-        group_info = client.GetGroup({'urlname': 'Perth-Django-Users-Group'})
-        try:
-            group_events = client.GetEvents({'group_id': group_info.id, 'status': event_status}).results
-        except ValueError:
-            group_events = []
-
-        iterable = (
-            (lambda event_datetime: {
-                'group_id': group_info.id,
-                'event_id': event['id'],
-                'event_name': event['name'],
-                'event_url': event['event_url'],
-                'og_event_name': '({}) {}'.format(dateformat.format(event_datetime, 'D d M'), event['name']),
-                'event_address': '{}, {}'.format(event['venue']['name'], event['venue']['address_1']) if 'venue' in event else '',
-                'event_description': event['description'],
-                'og_event_description': strip_tags(event['description']).encode('ascii', 'ignore'),
-                'event_yes_rsvp_count': event['yes_rsvp_count'],
-                'event_datetime': event_datetime,
-            })(datetime.datetime.fromtimestamp(event['time'] / 1000.0, PERTH_TIMEZONE))
-            for event in sorted(group_events, key=lambda d: d['time']))
-        return [
-            event
-            for event in iterable
-            if event['event_datetime'] >= from_date
-        ]
-    except HttpClientError:
-        return []
+# def get_events(event_status, from_date):
+#     try:
+#         client = meetup.api.Client('73c42797541a6c207a2a2b41262a66')
+#
+#         group_info = client.GetGroup({'urlname': 'Perth-Django-Users-Group'})
+#         try:
+#             group_events = client.GetEvents({'group_id': group_info.id, 'status': event_status}).results
+#         except ValueError:
+#             group_events = []
+#
+#         iterable = (
+#             (lambda event_datetime: {
+#                 'group_id': group_info.id,
+#                 'event_id': event['id'],
+#                 'event_name': event['name'],
+#                 'event_url': event['event_url'],
+#                 'og_event_name': '({}) {}'.format(dateformat.format(event_datetime, 'D d M'), event['name']),
+#                 'event_address': '{}, {}'.format(event['venue']['name'], event['venue']['address_1']) if 'venue' in event else '',
+#                 'event_description': event['description'],
+#                 'og_event_description': strip_tags(event['description']).encode('ascii', 'ignore'),
+#                 'event_yes_rsvp_count': event['yes_rsvp_count'],
+#                 'event_datetime': event_datetime,
+#             })(datetime.datetime.fromtimestamp(event['time'] / 1000.0, PERTH_TIMEZONE))
+#             for event in sorted(group_events, key=lambda d: d['time']))
+#         return [
+#             event
+#             for event in iterable
+#             if event['event_datetime'] >= from_date
+#         ]
+#     except HttpClientError:
+#         return []
 
 
 @cached(cache=TTLCache(maxsize=1024, ttl=60*15))  # cache for 15 minutes
@@ -75,11 +75,7 @@ def get_meetups():
                 'event_description': event['description'],
                 'og_event_description': strip_tags(event['description']).encode('ascii', 'ignore'),
                 'event_yes_rsvp_count': event['yes_rsvp_count'],
-                'event_datetime': dateformat.format(
-                        datetime.datetime.fromtimestamp(
-                            event['time'] / 1000.0, PERTH_TIMEZONE
-                        ), 'D d M'
-                    ),
+                'event_datetime': timezone.datetime.fromtimestamp(event['time'] / 1000.0),
             } for event in sorted(response.json(), key=lambda d: d['time'])]
 
     except requests.exceptions.RequestException as e:
