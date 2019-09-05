@@ -4,7 +4,7 @@
 
 <br>
 <div class="col-md-12">
-    {% if group_events is None  %}
+    {% if group_events is None %}
         <p>
             Unable to connect to <a href="http://www.meetup.com/Perth-Django-Users-Group/">PDPD on meetup.com!</a>
         </p>
@@ -16,8 +16,11 @@
                         <tr>
                             <td class="event-table-col1">When?</td>
                             <td>
-                                <b title="{{ each_event.event_datetime|date:"T" }}">{{ each_event.event_datetime|date:"l, d M Y, P" }}
-                                    ({{ each_event.event_datetime|naturaltime }})</b>
+                                <b>
+                                    {{ each_event.event_datetime|date:"T" }}
+                                    {{ each_event.event_datetime|date:"l, d M Y, P" }}
+                                    ( {{ each_event.event_datetime|naturaltime }} )
+                                </b>
                             </td>
                         </tr>
                         <tr>
