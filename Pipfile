@@ -4,17 +4,17 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
-autopep8 = "*"
+black = "*"
 rope = "*"
-pylint = "*"
+flake8 = "*"
 
 [packages]
 django = ">=2.2,<3"
-dj-database-url = "==0.4.0"
+dj-database-url = ">=0.4.0"
 gunicorn = "*"
 #opbeat = "*"
-psycopg2 = "==2.7.5"
-whitenoise = "==2.0.6"
+psycopg2 = ">=2.7.5"
+whitenoise = ">=2.0.6"
 meetup-api = ">=0.1.1"
 pytz = "*"
 djangorestframework = ">=3.6.3"
@@ -24,3 +24,6 @@ cachetools = "*"
 
 [requires]
 python_version = "3.7"
+
+[pipenv]
+allow_prereleases = true
