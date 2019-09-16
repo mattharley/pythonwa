@@ -26,6 +26,28 @@ move to the directory with this file in it and run the following command
 
 this will install all the required packages for production and development.
 
+### Activating the virtual environment
+
+If your shell hasn't automatically enabled your virtual environment, you should now be able to access your virtual environment with this command
+
+    pipenv shell
+
+### Setting up the local development database
+
+Run these commands to apply the latest migrations
+
+    python manage.py migrate
+
+### Running the local development server
+
+Now you should be able to run the local dev server by running this command
+
+    python manage.py runserver
+
+## Testing
+
+*It doesn't look like anyone has written any tests, Pull requests welcome!*
+
 ## Code style
 
 ### Black
@@ -40,19 +62,13 @@ to run black go to the directory this file is in and run the following command.
 
 To help editor with code formatting rules, we use a .editorconfig file (<http://editorconfig.org>), most modern code editors support this, some like VS Code require a plugin, see the link above for information on your editor of choice.
 
-## Testing
-
-*It doesn't look like anyone has written any tests, Pull requests welcome!*
-
 ## Deployment
 
 ### requrements.txt
 
-`requirements.txt` is for Heroku.
+~~`requirements.txt` is for Heroku.~~
 
-if you have updated the requirements for this package you may need to consider running 
-
-    pipenv lock -r > requirements.txt
+Heroku now prefers to use Pipfile over requirements.txt, so as long as you've installed your package with `pipenv install` and not `pip install` you shouldn't need to do anything else!
 
 ### Heroku
 
