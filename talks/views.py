@@ -11,9 +11,7 @@ class TalkListView(ListView):
 def home_page(request):
     return render(
         request,
-        'home-talks.html',
-        {
-        },
-
+        "home-talks.html",
+        {},
         # context_instance=RequestContext(request)
     )

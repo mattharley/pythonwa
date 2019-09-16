@@ -1,5 +1,6 @@
 from django.contrib import admin
 from profiles.models import Profile
+
 # Register your models here.
 from .models import Profile
 from django.contrib.auth.admin import UserAdmin
@@ -16,29 +17,55 @@ class ProfileAdmin(UserAdmin):
     """
     Fields used to update an existing user
     """
+
     fieldsets = (
-        (None, {'fields': ('email', 'password')}),
-        (_('Personal info'), {'fields': ('name', 'photo', 'frontend', 'backend', 'year_started_learning', 'company')}),
-        (_('Permissions'), {'fields': ('is_active', 'is_staff', 'is_superuser',
-                                       'groups', 'user_permissions')}),
-        (_('Important dates'), {'fields': ('last_login', 'date_joined')}),
+        (None, {"fields": ("email", "password")}),
+        (
+            _("Personal info"),
+            {
+                "fields": (
+                    "name",
+                    "photo",
+                    "frontend",
+                    "backend",
+                    "year_started_learning",
+                    "company",
+                )
+            },
+        ),
+        (
+            _("Permissions"),
+            {"fields": ("is_active", "is_staff", "is_superuser", "groups", "user_permissions")},
+        ),
+        (_("Important dates"), {"fields": ("last_login", "date_joined")}),
     )
     """
     Fields used to create a new user profile
     """
     add_fieldsets = (
-        (None, {
-            'classes': ('wide',),
-            'fields': (
-                'email', 'password1', 'password2', 'name', 'photo', 'frontend', 'backend', 'year_started_learning',
-                'company')}
-         ),
+        (
+            None,
+            {
+                "classes": ("wide",),
+                "fields": (
+                    "email",
+                    "password1",
+                    "password2",
+                    "name",
+                    "photo",
+                    "frontend",
+                    "backend",
+                    "year_started_learning",
+                    "company",
+                ),
+            },
+        ),
     )
     form = ProfileChangeForm
     add_form = ProfileCreationForm
-    list_display = ('email', 'name', 'is_staff')
-    search_fields = ('email', 'name')
-    ordering = ('email',)
+    list_display = ("email", "name", "is_staff")
+    search_fields = ("email", "name")
+    ordering = ("email",)
 
 
 admin.site.register(Profile, ProfileAdmin)

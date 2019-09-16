@@ -22,55 +22,53 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = "fbri!xjfu(_jjy340m28v8l+aw8osbxfbgg81#jt_or$%(=(*j"
 
-AUTH_USER_MODEL = 'profiles.Profile'
+AUTH_USER_MODEL = "profiles.Profile"
 # Application definition
 
 INSTALLED_APPS = (
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'django.contrib.humanize',
-
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+    "django.contrib.humanize",
     # 'opbeat.contrib.django',  # pulling this out because py3
-    'raven.contrib.django.raven_compat',
-
-    'talks',
-    'companies',
-    'profiles',
-    'home',
-    'jobs',
-    'sponsors',
-    'spa',
+    "raven.contrib.django.raven_compat",
+    "talks",
+    "companies",
+    "profiles",
+    "home",
+    "jobs",
+    "sponsors",
+    "spa",
 )
 
 MIDDLEWARE = (
     # 'opbeat.contrib.django.middleware.OpbeatAPMMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.middleware.security.SecurityMiddleware',
+    "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "django.middleware.security.SecurityMiddleware",
 )
 
-ROOT_URLCONF = 'pdpdmeetup.urls'
+ROOT_URLCONF = "pdpdmeetup.urls"
 
 TEMPLATES = (
     {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'pdpdmeetup/templates')],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-            ],
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [os.path.join(BASE_DIR, "pdpdmeetup/templates")],
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": [
+                "django.template.context_processors.debug",
+                "django.template.context_processors.request",
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
+            ]
         },
     },
 )
@@ -82,68 +80,58 @@ TEMPLATES = (
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
     }
 }
 
 AUTH_PASSWORD_VALIDATORS = (
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+    {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
+    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
+    {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
+    {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
 )
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.9/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
-TIME_ZONE = 'Australia/Perth'
+LANGUAGE_CODE = "en-us"
+TIME_ZONE = "Australia/Perth"
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
 # Update database configuration with $DATABASE_URL.
 db_from_env = dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(db_from_env)
+DATABASES["default"].update(db_from_env)
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
 # Allow all host headers
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ["*"]
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
-STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
-STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(PROJECT_ROOT, "staticfiles")
+STATIC_URL = "/static/"
 
 # Extra places for collectstatic to find static files.
-STATICFILES_DIRS = [
-    os.path.join(PROJECT_ROOT, 'static'),
-]
+STATICFILES_DIRS = [os.path.join(PROJECT_ROOT, "static")]
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media')
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(PROJECT_ROOT, "media")
 
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+STATICFILES_STORAGE = "whitenoise.django.GzipManifestStaticFilesStorage"
 
-DEBUG = 'true'
+DEBUG = "true"
 
 RAVEN_CONFIG = {
-    'dsn': 'https://4990b44ab66041d69b4afe58a2c7f594:130b29ef20ec4aeab8baf7eb8832a5d3@sentry.io/1251585',
+    "dsn": "https://4990b44ab66041d69b4afe58a2c7f594:130b29ef20ec4aeab8baf7eb8832a5d3@sentry.io/1251585",
     # If you are using git, you can also automatically configure the
     # release based on the git info.
     # 'release': raven.fetch_git_sha(os.path.abspath(os.pardir)),

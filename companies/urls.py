@@ -9,16 +9,15 @@ from django.conf import settings
 from companies.api import companies
 
 
-app_name = 'companies'
+app_name = "companies"
 urlpatterns = [
     # Examples:
     # url(r'^companies/', 'pdpdmeetup.views.home', name='home'),
-
-    url(r'^api/companies/$', companies, name='api_companies'),
-    url(r'^create/$', company_create, name='companies-create'),
-    url(r'^companies/$', company_list, name='companies-home'),
-    url(r'^companies-edit/(?P<id>\d+)/', company_edit, name='company-edit'),
-    url(r'^companies-delete/$', company_delete, name='company-delete'),
+    url(r"^api/companies/$", companies, name="api_companies"),
+    url(r"^create/$", company_create, name="companies-create"),
+    url(r"^companies/$", company_list, name="companies-home"),
+    url(r"^companies-edit/(?P<id>\d+)/", company_edit, name="company-edit"),
+    url(r"^companies-delete/$", company_delete, name="company-delete"),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

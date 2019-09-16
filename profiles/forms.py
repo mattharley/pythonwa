@@ -28,4 +28,4 @@ class ProfileChangeForm(UserChangeForm):
 
     class Meta:
         model = Profile
-        fields = '__all__'
+        fields = "__all__"

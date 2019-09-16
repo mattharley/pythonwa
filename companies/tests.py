@@ -13,14 +13,20 @@ class CompanyTest(TestCase):
 
     def test_company_home(self):
         client = Client()
-        response = client.get(reverse('companies-home'))
+        response = client.get(reverse("companies-home"))
         self.assertEqual(response.status_code, 200)
 
     def test_company_creation(self):
         client = Client()
-        response = client.post(reverse('companies-create'),
-                               {'name': 'jose', 'abn': '12312423422377777777', 'description': 'my description',
-                                'logo': open('./android-icon.png')})
+        response = client.post(
+            reverse("companies-create"),
+            {
+                "name": "jose",
+                "abn": "12312423422377777777",
+                "description": "my description",
+                "logo": open("./android-icon.png"),
+            },
+        )
 
         self.assertIn("Record succesfully created", response.content)
 
