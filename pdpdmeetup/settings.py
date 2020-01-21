@@ -20,7 +20,7 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "fbri!xjfu(_jjy340m28v8l+aw8osbxfbgg81#jt_or$%(=(*j"
+SECRET_KEY = os.environ.get("SECRET_KEY", 'this-is-a-very-secret-key')
 
 AUTH_USER_MODEL = "profiles.Profile"
 # Application definition
@@ -128,10 +128,10 @@ MEDIA_ROOT = os.path.join(PROJECT_ROOT, "media")
 # https://warehouse.python.org/project/whitenoise/
 STATICFILES_STORAGE = "whitenoise.django.GzipManifestStaticFilesStorage"
 
-DEBUG = "true"
+DEBUG = os.environ.get('DEBUG') != 'false'
 
 RAVEN_CONFIG = {
-    "dsn": "https://4990b44ab66041d69b4afe58a2c7f594:130b29ef20ec4aeab8baf7eb8832a5d3@sentry.io/1251585",
+    "dsn": os.environ.get('SENTRY_DSN'),
     # If you are using git, you can also automatically configure the
     # release based on the git info.
     # 'release': raven.fetch_git_sha(os.path.abspath(os.pardir)),
