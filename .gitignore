@@ -1,3 +1,13 @@
+# ignore project files
+.venv
+*.sqlite3
+.vscode
+.idea
+
+
+# ignore mac files
+.DS_Store
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -60,7 +70,3 @@ target/
 
 #Ipython Notebook
 .ipynb_checkpoints
-.venv
-*.sqlite3
-.vscode
-.idea
