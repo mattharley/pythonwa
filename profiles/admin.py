@@ -22,21 +22,9 @@ class ProfileAdmin(UserAdmin):
         (None, {"fields": ("email", "password")}),
         (
             _("Personal info"),
-            {
-                "fields": (
-                    "name",
-                    "photo",
-                    "frontend",
-                    "backend",
-                    "year_started_learning",
-                    "company",
-                )
-            },
+            {"fields": ("name", "photo", "frontend", "backend", "year_started_learning", "company",)},
         ),
-        (
-            _("Permissions"),
-            {"fields": ("is_active", "is_staff", "is_superuser", "groups", "user_permissions")},
-        ),
+        (_("Permissions"), {"fields": ("is_active", "is_staff", "is_superuser", "groups", "user_permissions")},),
         (_("Important dates"), {"fields": ("last_login", "date_joined")}),
     )
     """
