@@ -94,15 +94,19 @@ def get_meetups() -> Optional[List[dict]]:
 
 
 def home_page(request):
-    date_str = "".join(list(request.GET.keys())).strip()
-    if date_str:
-        now = timezone.now()
-        default_args = (now.year, now.month, 1)
-        user_args = list(map(int, date_str.split("-")))
-        args = tuple(user_num or default for default, user_num in zip_longest(default_args, user_args))
-        date = datetime.datetime(*args, tzinfo=PERTH_TIMEZONE)
-    else:
-        date = timezone.now()
+    # bendog - removed all of these lines because they are no longer needed and they were raising 500s
+    # # TODO: bendog - this makes absolutely no sense, and i'm not sure why all GET.keys() are being loaded
+    # get_args = [x for x in request.GET.keys() if x not in ('fbclid')]   # bendog - remove facebook link id
+    # # TODO: bendog - this should probably be a allow list of allowed keys, not a deny list
+    # date_str = "".join(get_args).strip()
+    # if date_str:
+    #     now = timezone.now()
+    #     default_args = (now.year, now.month, 1)
+    #     user_args = list(map(int, date_str.split("-")))
+    #     args = tuple(user_num or default for default, user_num in zip_longest(default_args, user_args))
+    #     date = datetime.datetime(*args, tzinfo=PERTH_TIMEZONE)
+    # else:
+    #     date = timezone.now()
     try:
         # coming_event = get_events('upcoming', date)[0]
         coming_event = get_meetups()[0]
