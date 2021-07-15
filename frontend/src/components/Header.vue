@@ -29,7 +29,7 @@
               <div class="flex items-center justify-between w-full md:w-auto">
                 <a href="#">
                   <span class="sr-only">Workflow</span>
-                  <div class="h-8 w-auto sm:h-10" src="../assets/pythonwa.png" alt="" />
+                  <img class="h-8 w-auto sm:h-10" src="../assets/pythonwa.png" alt="" />
                 </a>
                 <div class="-mr-2 flex items-center md:hidden">
                   <PopoverButton class="bg-gray-50 rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500">
@@ -58,7 +58,7 @@
               <div class="px-5 pt-4 flex items-center justify-between">
                 <div>
                   <div class="h-8 w-auto">
-                    <img src="../assets/logo.png"/>
+                    <img class="h-8 w-auto sm:h-10" src="../assets/pythonwa.png"/>
                   </div>
                 </div>
                 <div class="-mr-2">
