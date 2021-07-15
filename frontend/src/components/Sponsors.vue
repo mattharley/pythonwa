@@ -8,19 +8,29 @@
     <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 flex items-center">
       <div class="grid grid-cols-2 gap-8 md:grid-cols-6 lg:grid-cols-5">
         <div class="col-span-1 flex justify-center md:col-span-2 lg:col-span-1">
-          <img class="h-12" src="../assets/hipflask.png" alt="Hipflask" />
+          <a href="https://hipflaskapp.com/">
+            <img class="h-12" src="../assets/hipflask.png" alt="Hipflask" />
+          </a>
         </div>
         <div class="col-span-1 flex justify-center md:col-span-3 lg:col-span-1">
-          <ChatIcon class="h-10"/> <span class="ml-1 mt-1 text-2xl">robin.com.au</span>
+          <a href="http://robin.com.au">
+            <ChatIcon class="h-10"/> <span class="ml-1 mt-1 text-2xl">robin.com.au</span>
+          </a>
         </div>
         <div class="col-span-1 flex justify-center md:col-span-2 lg:col-span-1">
-          <img class="h-12" src="../assets/nowhereman.png" alt="Nowhereman Brewing" />
+          <a href="https://www.nowhereman.com.au/">
+            <img class="h-12" src="../assets/nowhereman.png" alt="Nowhereman Brewing" />
+          </a>
         </div>
         <div class="col-span-1 flex justify-center md:col-span-2 lg:col-span-1">
-          <img class="h-12" src="../assets/nform.png" alt="nForm" />
+          <a href="https://nform.com.au/">
+            <img class="h-12" src="../assets/nform.png" alt="nForm" />
+          </a>
         </div>
         <div class="col-span-2 flex justify-center md:col-span-3 lg:col-span-1">
-          <img class="h-12" src="../assets/spacecubed.png" alt="Spacecubed" />
+          <a href="https://spacecubed.com/">
+            <img class="h-12" src="../assets/spacecubed.png" alt="Spacecubed" />
+          </a>
         </div>
       </div>
     </div>
