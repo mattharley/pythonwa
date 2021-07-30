@@ -1,5 +1,5 @@
 <template>
-    <section class="mt-16 max-w-md mx-auto relative z-10 px-4 sm:max-w-3xl sm:px-6 lg:max-w-7xl lg:px-8" aria-labelledby="contact-heading">
+    <section id="code" class="mt-16 max-w-md mx-auto relative z-10 px-4 sm:max-w-3xl sm:px-6 lg:max-w-7xl lg:px-8" aria-labelledby="contact-heading">
         <h2 class="sr-only" id="contact-heading">Contact us</h2>
         <div class="grid grid-cols-1 gap-y-20 lg:grid-cols-3 lg:gap-y-0 lg:gap-x-8">
             <div class="flex flex-col bg-white rounded-2xl shadow-xl">

@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-gray-50">
+  <div class="bg-gray-50 overflow-x-hidden">
     <Header />
     <Talks />
     <Photos />

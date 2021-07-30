@@ -1,5 +1,5 @@
 <template>
-  <div class="md:max-w-xl mx-auto">
+  <section id="photos" class="md:max-w-xl mx-auto">
     <div class="text-center">
       <Carousel>
         <Slide v-for="index in 8" :key="index">
@@ -11,7 +11,7 @@
         </template>
       </Carousel>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>

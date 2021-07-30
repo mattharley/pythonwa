@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <section id="sponsors">
     <div class="mt-20 text-center">
       <p class="max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-2xl md:max-w-3xl">
         Thanks to our awesome sponsors
@@ -34,7 +34,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>

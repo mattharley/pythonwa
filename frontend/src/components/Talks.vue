@@ -1,6 +1,6 @@
 <template>
-    <div class="max-w-4xl mx-auto" id="talks">
-        <div class="bg-white px-4 py-5 border-b border-gray-200 sm:px-6">
+    <section id="talks" class="md:max-w-4xl mx-auto">
+        <div class="bg-white border-b px-4 py-5 sm:px-6 shadow rounded-t-md">
             <div class="-ml-4 -mt-2 flex items-center justify-between flex-wrap sm:flex-nowrap">
                 <div class="ml-4 mt-2">
                     <h3 class="text-lg leading-6 font-medium text-gray-900">
@@ -14,43 +14,42 @@
                 </div>
             </div>
         </div>
-        <div class="bg-white shadow overflow-hidden sm:rounded-md">
+        <div class="bg-white shadow rounded-b-md">
             <ul class="divide-y divide-gray-200">
-            <li v-for="talk in talks" :key="talk.link">
-                <div class="flex items-center px-4 py-4 sm:px-6">
-                    <div class="flex items-center">
-                      <div class="px-4">
-                          <div>
-                            <a :href="talk.link" class="block hover:bg-gray-50">
-                              <p class="font-medium text-blue-600 truncate">{{ talk.title }}</p>
-                            </a>
-                            <p class="mt-2 flex items-center text-sm text-gray-500">
-                                <ClockIcon class="mr-1.5 h-5 w-5 text-gray-400" aria-hidden="true" />
-                                <span class="truncate">{{ talk.time }}</span>
-                            </p>
-                            <p class="mt-2 flex items-center text-sm text-gray-500">
-                                <LocationMarkerIcon class="mr-1.5 h-5 w-5 text-gray-400" aria-hidden="true" />
-                                <span class="truncate">{{ talk.location }}</span>
-                            </p>
-                            <p class="mt-2 flex items-center text-sm text-gray-500">
-                                <UserCircleIcon class="mr-1.5 h-5 w-5 text-gray-400" aria-hidden="true" />
-                                <span class="truncate">{{ talk.attendance }}</span>
-                            </p>
-                            <p class="mt-2 flex items-center text-sm">
-                                <span class="whitespace-pre-line" v-html="makeLinks(talk.description)"></span>
-                            </p>
-                          </div>
-                      </div>
+                <li v-for="talk in talks" :key="talk.link">
+                    <div class="p-4 sm:p-6">
+                        <a :href="talk.link" class="block hover:bg-gray-50">
+                            <p class="font-medium text-blue-600 truncate">{{ talk.title }}</p>
+                        </a>
+                        <p class="mt-2 flex items-center text-sm text-gray-500">
+                            <ClockIcon class="mr-1.5 h-5 w-5 text-gray-400" aria-hidden="true" />
+                            <span class="truncate">{{ talk.time }}</span>
+                        </p>
+                        <p class="mt-2 flex items-center text-sm text-gray-500">
+                            <LocationMarkerIcon class="mr-1.5 h-5 w-5 text-gray-400" aria-hidden="true" />
+                            <span class="truncate">{{ talk.location }}</span>
+                        </p>
+                        <p class="mt-2 flex items-center text-sm text-gray-500">
+                            <UserCircleIcon class="mr-1.5 h-5 w-5 text-gray-400" aria-hidden="true" />
+                            <span class="truncate">{{ talk.attendance }}</span>
+                        </p>
+                        <p class="mt-2 text-sm">
+                            <span class="whitespace-pre-line" v-html="makeLinks(talk.description)"></span>
+                        </p>
                     </div>
-                </div>
-            </li>
+                </li>
             </ul>
         </div>
-    </div>
+    </section>
 </template>
 
 <script>
-import { ChatAlt2Icon, ClockIcon, LocationMarkerIcon, UserCircleIcon } from '@heroicons/vue/outline';
+import { 
+  ChatAlt2Icon, 
+  ClockIcon, 
+  LocationMarkerIcon, 
+  UserCircleIcon 
+} from '@heroicons/vue/outline';
 
 export default {
   components: {
