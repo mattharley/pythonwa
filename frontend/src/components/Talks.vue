@@ -45,10 +45,10 @@
 
 <script>
 import { 
-  ChatAlt2Icon, 
-  ClockIcon, 
-  LocationMarkerIcon, 
-  UserCircleIcon 
+    ChatAlt2Icon, 
+    ClockIcon, 
+    LocationMarkerIcon, 
+    UserCircleIcon 
 } from '@heroicons/vue/outline';
 
 export default {
@@ -62,29 +62,29 @@ export default {
         return {
             talks: [
                 {
-                title: "Breaking the One Minute Mile - Adventures in Load Testing With Python",
-                link: "https://www.meetup.com/pythonwa/events/279413063/",
-                time: "AWST Thursday, 05 Aug 2021, 5:30 p.m. ( 2 weeks, 6 days from now )",
-                location: "Riff @ Spacecubed",
-                attendance: "15",
-                description: `In December of 2015, the singer Adele placed all 50 shows of her international tour on sale at the same time on http://ticketmaster.com*
-                    This is what most would call a tactical error.
+                    title: "Breaking the One Minute Mile - Adventures in Load Testing With Python",
+                    link: "https://www.meetup.com/pythonwa/events/279413063/",
+                    time: "AWST Thursday, 05 Aug 2021, 5:30 p.m. ( 2 weeks, 6 days from now )",
+                    location: "Riff @ Spacecubed",
+                    attendance: "15",
+                    description: `In December of 2015, the singer Adele placed all 50 shows of her international tour on sale at the same time on http://ticketmaster.com*
+                        This is what most would call a tactical error.
 
-                    After fan presales, a total of approximately 350,000^ tickets were sold in under 10 minutes. There was around 10M people (and 100k bots) all trying to buy tickets at once.
+                        After fan presales, a total of approximately 350,000^ tickets were sold in under 10 minutes. There was around 10M people (and 100k bots) all trying to buy tickets at once.
 
-                    Despite the load on the site, it did not crash although admittedly it slowed to a crawl and many people didn't realise until over an hour that tickets had sold out.
+                        Despite the load on the site, it did not crash although admittedly it slowed to a crawl and many people didn't realise until over an hour that tickets had sold out.
 
-                    So how can one deal with managing several high-volume ticketing sales? Well, the August talk will dive into just that with Matt Harley the Lead Developer for Megatix.
+                        So how can one deal with managing several high-volume ticketing sales? Well, the August talk will dive into just that with Matt Harley the Lead Developer for Megatix.
 
-                    An average of 35,000 tickets per minute seems like an unattainable feat for a small Perth-based ticketing company but with several high-volume sales coming up it was as good a time as any to finely tune the performance of their ticketing system to deal with a workload of that magnitude.
+                        An average of 35,000 tickets per minute seems like an unattainable feat for a small Perth-based ticketing company but with several high-volume sales coming up it was as good a time as any to finely tune the performance of their ticketing system to deal with a workload of that magnitude.
 
-                    Matt Harley is the Lead Developer at Megatix, a WA owned ticketing and events company and founder of Hipflask, an app which helps you find the coolest events around town.
+                        Matt Harley is the Lead Developer at Megatix, a WA owned ticketing and events company and founder of Hipflask, an app which helps you find the coolest events around town.
 
-                    - https://megatix.com.au/
-                    - https://hipflaskapp.com
+                        - https://megatix.com.au/
+                        - https://hipflaskapp.com
 
-                    * source: https://www.quora.com/What-was-the-quickest-time-in-history-tickets-for-a-show-concert-sold-out
-                    ^ The gross tickets was closer to 750k`
+                        * source: https://www.quora.com/What-was-the-quickest-time-in-history-tickets-for-a-show-concert-sold-out
+                        ^ The gross tickets was closer to 750k`
                 }
             ]
         }
