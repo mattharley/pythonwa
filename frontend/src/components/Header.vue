@@ -93,12 +93,12 @@
           </p>
           <div class="mt-5 max-w-lg mx-auto sm:flex sm:justify-center md:mt-8">
             <div class="rounded-md shadow">
-              <a href="#" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 md:py-4 md:text-lg md:px-10">
+              <a href="https://pdpdmeetup-slack.herokuapp.com/" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 md:py-4 md:text-lg md:px-10">
                 Chat with us <img class="ml-4 h-8" src="../assets/slack.png" />
               </a>
             </div>
             <div class="mt-3 rounded-md shadow sm:mt-0 sm:ml-3">
-              <a href="#" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-blue-600 bg-white hover:bg-gray-50 md:py-4 md:text-lg md:px-10">
+              <a href="http://www.meetup.com/pythonwa/" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-blue-600 bg-white hover:bg-gray-50 md:py-4 md:text-lg md:px-10">
                 Join the group <img class="ml-4 h-8" src="../assets/meetup.png" />
               </a>
             </div>
