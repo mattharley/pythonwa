@@ -19,7 +19,7 @@
                 <li v-for="talk in talks" :key="talk.link">
                     <div class="p-4 sm:p-6">
                         <a :href="talk.link" class="block hover:bg-gray-50">
-                            <p class="font-medium text-blue-600 truncate">{{ talk.title }}</p>
+                            <p class="font-medium text-blue-600 truncate">{{ talk.name }}</p>
                         </a>
                         <p class="mt-2 flex items-center text-sm text-gray-500">
                             <ClockIcon class="mr-1.5 h-5 w-5 text-gray-400" aria-hidden="true" />
@@ -27,14 +27,14 @@
                         </p>
                         <p class="mt-2 flex items-center text-sm text-gray-500">
                             <LocationMarkerIcon class="mr-1.5 h-5 w-5 text-gray-400" aria-hidden="true" />
-                            <span class="truncate">{{ talk.location }}</span>
+                            <span class="truncate">{{ talk.venue }}</span>
                         </p>
                         <p class="mt-2 flex items-center text-sm text-gray-500">
                             <UserCircleIcon class="mr-1.5 h-5 w-5 text-gray-400" aria-hidden="true" />
                             <span class="truncate">{{ talk.attendance }}</span>
                         </p>
                         <p class="mt-2 text-sm">
-                            <span class="whitespace-pre-line" v-html="makeLinks(talk.description)"></span>
+                            <div v-html="talk.description"></div>
                         </p>
                     </div>
                 </li>
@@ -44,6 +44,8 @@
 </template>
 
 <script>
+import { DateTime } from "luxon";
+
 import { 
     ChatAlt2Icon, 
     ClockIcon, 
@@ -60,39 +62,38 @@ export default {
     },
     data() {
         return {
-            talks: [
-                {
-                    title: "Breaking the One Minute Mile - Adventures in Load Testing With Python",
-                    link: "https://www.meetup.com/pythonwa/events/279413063/",
-                    time: "AWST Thursday, 05 Aug 2021, 5:30 p.m. ( 2 weeks, 6 days from now )",
-                    location: "Riff @ Spacecubed",
-                    attendance: "15",
-                    description: `In December of 2015, the singer Adele placed all 50 shows of her international tour on sale at the same time on http://ticketmaster.com*
-                        This is what most would call a tactical error.
-
-                        After fan presales, a total of approximately 350,000^ tickets were sold in under 10 minutes. There was around 10M people (and 100k bots) all trying to buy tickets at once.
-
-                        Despite the load on the site, it did not crash although admittedly it slowed to a crawl and many people didn't realise until over an hour that tickets had sold out.
-
-                        So how can one deal with managing several high-volume ticketing sales? Well, the August talk will dive into just that with Matt Harley the Lead Developer for Megatix.
-
-                        An average of 35,000 tickets per minute seems like an unattainable feat for a small Perth-based ticketing company but with several high-volume sales coming up it was as good a time as any to finely tune the performance of their ticketing system to deal with a workload of that magnitude.
-
-                        Matt Harley is the Lead Developer at Megatix, a WA owned ticketing and events company and founder of Hipflask, an app which helps you find the coolest events around town.
-
-                        - https://megatix.com.au/
-                        - https://hipflaskapp.com
-
-                        * source: https://www.quora.com/What-was-the-quickest-time-in-history-tickets-for-a-show-concert-sold-out
-                        ^ The gross tickets was closer to 750k`
-                }
-            ]
+            talks: []
         }
     },
+    mounted() {
+        this.fetchTalks()
+    },
     methods: {
-        makeLinks(text) {
-            return text;
+        async fetchTalks() {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/events/future`);
+            const talks = await response.json();
+            this.talks = talks.map(talk => {
+                const time = DateTime.fromMillis(talk.time).toLocaleString(DateTime.DATETIME_FULL);
+                const venue = `${talk.venue.name} @ ${talk.venue.address_1}`;
+                return {
+                    name: talk.name,
+                    time: time,
+                    venue: venue,
+                    attendance: talk.attendance,
+                    description: talk.description,
+                    link: talk.link
+                }
+            });
         }
     }
 };
 </script>
+
+<style scoped>
+a { 
+    @apply text-blue-600
+}
+p {
+    
+}
+</style>
