@@ -14,10 +14,9 @@ def events_future():
         sorted_data = sorted(data, key=lambda d: d['time'])
         events = []
         for event in sorted_data:
-            event_time = event['time']
             events.append({
                 'name': event['name'],
-                'time': event_time,
+                'time': event['time'],
                 'venue': event['venue'],
                 'attendance': event['yes_rsvp_count'],
                 'description': event['description'],
