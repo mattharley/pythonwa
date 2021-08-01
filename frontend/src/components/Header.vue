@@ -22,11 +22,11 @@
               <a v-for="item in navigation" :key="item.name" :href="item.href" class="font-medium text-gray-500 hover:text-gray-900" v-smooth-scroll>{{ item.name }}</a>
             </div>
             <div class="hidden md:absolute md:flex md:items-center md:justify-end md:inset-y-0 md:right-0">
-              <span class="inline-flex rounded-md shadow">
+              <!-- <span class="inline-flex rounded-md shadow">
                 <a href="#" class="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-blue-400 bg-white hover:bg-gray-50">
                   Log in
                 </a>
-              </span>
+              </span> -->
             </div>
           </nav>
         </div>
@@ -50,9 +50,9 @@
               <div class="px-2 pt-2 pb-3">
                 <a v-for="item in navigation" :key="item.name" :href="item.href" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50" v-smooth-scroll>{{ item.name }}</a>
               </div>
-              <a href="#" class="block w-full px-5 py-3 text-center font-medium text-blue-400 bg-gray-50 hover:bg-gray-100">
+              <!-- <a href="#" class="block w-full px-5 py-3 text-center font-medium text-blue-400 bg-gray-50 hover:bg-gray-100">
                 Log in
-              </a>
+              </a> -->
             </div>
           </PopoverPanel>
         </transition>
