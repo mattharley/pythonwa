@@ -34,7 +34,7 @@
                             <span class="truncate">{{ talk.attendance }}</span>
                         </p>
                         <p class="mt-2 text-sm">
-                            <div v-html="talk.description"></div>
+                            <div class="talk-description" v-html="talk.description"></div>
                         </p>
                     </div>
                 </li>
@@ -89,11 +89,13 @@ export default {
 };
 </script>
 
-<style scoped>
-a { 
-    @apply text-blue-600
+<style>
+.talk-description  a{ 
+    color: rgb(37, 99, 235);
 }
-p {
-    
+
+.talk-description p {
+    margin-block-start: 1em;
+    margin-block-end: 1em;
 }
 </style>
