@@ -15,7 +15,6 @@ npm run dev
 ``` sh
 # if you don't already have it
 # pip install pipenv
-cd backend
 pipenv install
 pipenv run uvicorn main:app --reload
 ```
@@ -23,5 +22,9 @@ pipenv run uvicorn main:app --reload
 ## Deploying
 
 ``` sh
+cd frontend
 npm run build
+git add dist
+git commit -m 'my awesome change'
+git push heroku master
 ```
