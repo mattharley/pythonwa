@@ -14,13 +14,28 @@
                                 <div class="flex justify-between">
                                     <div></div>
                                     <div>
-                                        <button type="button" class="bg-white rounded-md text-gray-400 hover:text-gray-500" @click="openModal = false">
+                                        <button type="button" class="bg-white rounded-md text-gray-400 hover:text-gray-500" @click="closeModal">
                                             <span class="sr-only">Close</span>
                                             <XIcon class="h-6 w-6" aria-hidden="true" />
                                         </button>
                                     </div>
                                 </div>
-                                <div>
+                                <div v-if="success" class="py-2 text-center">
+                                    <span class="inline-flex items-center px-5 py-2 rounded-md text-sm font-medium bg-green-100 text-green-800">
+                                        {{ success }}
+                                    </span>
+                                </div>
+                                <div v-else-if="error" class="py-2 text-center space-y-6">
+                                    <span class="inline-flex items-center px-5 py-2 rounded-md text-sm font-medium bg-red-100 text-red-800">
+                                        {{ error }}
+                                    </span>
+                                    <div>
+                                        <a @click.prevent="error = ''" href="#">
+                                            Try again?
+                                        </a>
+                                    </div>
+                                </div>
+                                <div v-else>
                                     <form class="space-y-6" @submit.prevent="onSubmit">
                                         <div>
                                             <label for="email" class="block text-sm font-medium text-gray-700">
@@ -146,7 +161,9 @@ export default {
                 name: '',
                 email: '',
                 topic: ''
-            }
+            },
+            success: '',
+            error: ''
         }
     },
     mounted() {
@@ -170,18 +187,41 @@ export default {
             });
         },
         async onSubmit() {
-            const response = await fetch(
-                `${import.meta.env.VITE_API_URL}/talks/apply`, 
-                { 
-                    method: 'POST', 
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(this.form)
-                }
-            );
+            try {
+                const response = await fetch(
+                    `${import.meta.env.VITE_API_URL}/talks/apply`, 
+                    { 
+                        method: 'POST', 
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(this.form)
+                    }
+                );
+                this.success = 'Thank you for submitting your talk';
+            } catch (error) {
+                this.error = 'There was an error submitting your talk';
+            }
+        },
+        async resetForm() {
             this.openModal = false;
-        }   
+            setTimeout(_ => {
+                this.success = '';
+                this.error = '';
+                this.form = {
+                    name: '',
+                    email: '',
+                    topic: ''
+                };
+            }, 500);
+        },
+        closeModal() {
+            if (this.success) {
+                this.resetForm();
+                return;
+            }
+            this.openModal = false;
+        }
     }
 };
 </script>
