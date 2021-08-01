@@ -7,6 +7,8 @@ name = "pypi"
 fastapi = "*"
 uvicorn = "*"
 requests = "*"
+aiofiles = "*"
+jinja2 = "*"
 
 [dev-packages]
 

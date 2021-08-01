@@ -2,7 +2,9 @@ from typing import Optional
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
+from starlette.templating import Jinja2Templates
 import requests
 
 
@@ -43,3 +45,11 @@ def talks_future():
 @app.post('/api/talks/apply')
 def talks_apply(application: TalkApplication):
     return application
+
+templates = Jinja2Templates(directory='frontend/dist')
+
+@app.get('/')
+def index():
+    return templates.TemplateResponse('index.html', { 'request': {}}) 
+
+app.mount("/", StaticFiles(directory='frontend/dist'), name='static')
