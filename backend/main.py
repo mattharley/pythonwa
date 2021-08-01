@@ -2,8 +2,14 @@ from typing import Optional
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel
 import requests
 
+
+class TalkApplication(BaseModel):
+    name: str
+    email: str
+    topic: Optional[str] = None
 
 app = FastAPI()
 
@@ -16,8 +22,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-@app.get('/api/events/future')
-def events_future():
+@app.get('/api/talks/future')
+def talks_future():
     response = requests.get('https://api.meetup.com/Perth-Django-Users-Group/events/')
     if response.status_code == 200:
         data = response.json()
@@ -33,3 +39,7 @@ def events_future():
                 'link': event['link'],
             })
     return events
+
+@app.post('/api/talks/apply')
+def talks_apply(application: TalkApplication):
+    return application

@@ -21,13 +21,13 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <form class="space-y-6" @submit.prevent="openModal = false">
+                                    <form class="space-y-6" @submit.prevent="onSubmit">
                                         <div>
                                             <label for="email" class="block text-sm font-medium text-gray-700">
                                                 Name
                                             </label>
                                             <div class="mt-1">
-                                                <input id="name" name="name" required="true" class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
+                                                <input v-model="form.name" id="name" name="name" required="true" class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
                                             </div>
                                         </div>
 
@@ -36,7 +36,7 @@
                                                 Email address
                                             </label>
                                             <div class="mt-1">
-                                                <input id="email" name="email" type="email" autocomplete="email" required="true" class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
+                                                <input v-model="form.email" id="email" name="email" type="email" autocomplete="email" required="true" class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
                                             </div>
                                         </div>
 
@@ -45,7 +45,7 @@
                                                 Topic (optional)
                                             </label>
                                             <div class="mt-1">
-                                                <input id="topic" name="topc" class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
+                                                <input v-model="form.topic" id="topic" name="topc" class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
                                             </div>
                                         </div>
 
@@ -141,7 +141,12 @@ export default {
     data() {
         return {
             talks: [],
-            openModal: false
+            openModal: false,
+            form: {
+                name: '',
+                email: '',
+                topic: ''
+            }
         }
     },
     mounted() {
@@ -149,7 +154,7 @@ export default {
     },
     methods: {
         async fetchTalks() {
-            const response = await fetch(`${import.meta.env.VITE_API_URL}/events/future`);
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/talks/future`);
             const talks = await response.json();
             this.talks = talks.map(talk => {
                 const time = DateTime.fromMillis(talk.time).toLocaleString(DateTime.DATETIME_FULL);
@@ -163,7 +168,20 @@ export default {
                     link: talk.link
                 }
             });
-        }
+        },
+        async onSubmit() {
+            const response = await fetch(
+                `${import.meta.env.VITE_API_URL}/talks/apply`, 
+                { 
+                    method: 'POST', 
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(this.form)
+                }
+            );
+            this.openModal = false;
+        }   
     }
 };
 </script>
