@@ -5,12 +5,14 @@
     <Photos />
     <Sponsors />
     <Code />
+    <Conduct />
     <Footer />
   </div>
 </template>
 
 <script>
 import Code from './components/Code.vue';
+import Conduct from './components/Conduct.vue';
 import Footer from './components/Footer.vue';
 import Header from './components/Header.vue';
 import Photos from './components/Photos.vue';
@@ -20,6 +22,7 @@ import Talks from './components/Talks.vue';
 export default {
   components: {
     Code,
+    Conduct,
     Footer,
     Header,
     Photos,

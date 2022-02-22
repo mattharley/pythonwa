@@ -97,6 +97,7 @@ const navigation = [
   { name: 'Photos', href: '#photos' },
   { name: 'Sponsors', href: '#sponsors' },
   { name: 'Code With Us', href: '#code' },
+  { name: 'Conduct', href: '#conduct' },
 ];
 
 export default {
