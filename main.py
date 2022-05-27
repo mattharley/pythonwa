@@ -35,7 +35,7 @@ def talks_future():
             events.append({
                 'name': event['name'],
                 'time': event['time'],
-                'venue': event['venue'],
+                'venue': event.get('venue', ''),
                 'attendance': event['yes_rsvp_count'],
                 'description': event['description'],
                 'link': event['link'],
